@@ -126,7 +126,10 @@ export default async function PostPage({
             <div className="space-y-4">
               <h1 className="text-3xl font-bold">{post.title}</h1>
 
-              <div className="flex items-center gap-3">
+              <Link
+                href={`/users/${post.author.username || "unknown"}`}
+                className="flex items-center gap-3 hover:opacity-80 transition-opacity w-fit"
+              >
                 <Avatar className="h-12 w-12">
                   <AvatarImage src={post.author.avatarUrl || ""} />
                   <AvatarFallback>
@@ -142,7 +145,7 @@ export default async function PostPage({
                     {formatDate(post.createdAt)}
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
 
             {/* Prompt */}

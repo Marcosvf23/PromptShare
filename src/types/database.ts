@@ -1,4 +1,4 @@
-import { Post, User, Tag, Like, Comment } from "@prisma/client";
+import { Post, User, Tag, Like, Comment, PostTag } from "@prisma/client";
 
 // Post com relações
 export type PostWithRelations = Post & {

@@ -7,6 +7,7 @@ Sistema completo de visualização de posts individuais com comentários.
 ## 🎯 Funcionalidades Implementadas
 
 ### Página de Detalhes do Post
+
 - ✅ Layout responsivo com grid de 2 colunas
 - ✅ Imagem em alta resolução
 - ✅ Informações completas do post
@@ -17,6 +18,7 @@ Sistema completo de visualização de posts individuais com comentários.
 - ✅ Link de volta para a home
 
 ### Sistema de Comentários
+
 - ✅ Listagem de comentários em ordem reversa
 - ✅ Formulário para adicionar comentários
 - ✅ Requer autenticação para comentar
@@ -26,11 +28,13 @@ Sistema completo de visualização de posts individuais com comentários.
 - ✅ Mensagens de erro apropriadas
 
 ### APIs Criadas
+
 - ✅ `GET /api/posts/[id]` - Detalhes do post
 - ✅ `GET /api/posts/[id]/comments` - Listar comentários
 - ✅ `POST /api/posts/[id]/comments` - Criar comentário
 
 ### Integração
+
 - ✅ Cards da home linkam para página de detalhes
 - ✅ Hover effect na imagem do card
 - ✅ Título clicável no card
@@ -82,7 +86,7 @@ POST_DETAILS_IMPLEMENTATION.md            # Esta documentação
     username: string | null;
     name: string | null;
     avatarUrl: string | null;
-  };
+  }
   tags: Array<{
     id: string;
     name: string;
@@ -122,6 +126,7 @@ Authorization: Bearer <session_token>
 ### Acessar Detalhes de um Post
 
 1. **Na Home:**
+
    - Clique na imagem do post, ou
    - Clique no título do post
 
@@ -139,16 +144,19 @@ Authorization: Bearer <session_token>
 ### Via API
 
 **Buscar detalhes:**
+
 ```bash
 curl http://localhost:3000/api/posts/[POST_ID]
 ```
 
 **Listar comentários:**
+
 ```bash
 curl http://localhost:3000/api/posts/[POST_ID]/comments
 ```
 
 **Adicionar comentário (requer autenticação):**
+
 ```bash
 curl -X POST http://localhost:3000/api/posts/[POST_ID]/comments \
   -H "Content-Type: application/json" \
@@ -161,6 +169,7 @@ curl -X POST http://localhost:3000/api/posts/[POST_ID]/comments \
 ### CommentSection
 
 Componente client-side responsável por:
+
 - Renderizar lista de comentários
 - Formulário de novo comentário
 - Validação de autenticação
@@ -168,14 +177,16 @@ Componente client-side responsável por:
 - Feedback visual (loading, erros)
 
 **Props:**
+
 ```typescript
 interface CommentSectionProps {
-  postId: string;              // ID do post
+  postId: string; // ID do post
   initialComments?: Comment[]; // Comentários do SSR
 }
 ```
 
 **Características:**
+
 - Estado local para comentários
 - Otimistic updates (adiciona comentário imediatamente)
 - Validação de campo vazio
@@ -185,6 +196,7 @@ interface CommentSectionProps {
 ### Página de Detalhes
 
 **Características:**
+
 - Server-side rendering (SSR)
 - Fetch de dados no servidor
 - SEO-friendly
@@ -194,12 +206,14 @@ interface CommentSectionProps {
 ## 🔐 Proteção e Validações
 
 ### Comentários
+
 - ✅ Autenticação obrigatória (JWT)
 - ✅ Validação de conteúdo não vazio
 - ✅ Verificação de existência do post
 - ✅ Sanitização de entrada
 
 ### Posts
+
 - ✅ Validação de ID válido
 - ✅ Tratamento de post não encontrado
 - ✅ Relações carregadas eficientemente
@@ -242,6 +256,7 @@ Dado um post com ID `abc123`:
 ### Melhorias Futuras
 
 1. **Funcionalidades de Comentários**
+
    - [ ] Editar comentário
    - [ ] Deletar comentário
    - [ ] Responder a comentários (threads)
@@ -249,6 +264,7 @@ Dado um post com ID `abc123`:
    - [ ] Paginação de comentários
 
 2. **Página de Detalhes**
+
    - [ ] Compartilhar nas redes sociais
    - [ ] Copiar link do post
    - [ ] Download da imagem
@@ -256,6 +272,7 @@ Dado um post com ID `abc123`:
    - [ ] Posts relacionados/similares
 
 3. **SEO e Performance**
+
    - [ ] Metadata dinâmica (og:image, description)
    - [ ] Imagens otimizadas com blur placeholder
    - [ ] Cache de posts visualizados
@@ -271,11 +288,13 @@ Dado um post com ID `abc123`:
 
 Durante a implementação, foram corrigidos:
 
-1. **Campo author vs user:** 
+1. **Campo author vs user:**
+
    - Schema usa `user`, APIs retornavam como `author`
    - Solução: Transformação na API para consistência
 
 2. **TypeScript any types:**
+
    - Removido uso de `any` onde possível
    - Melhorada tipagem dos componentes
 
@@ -286,17 +305,20 @@ Durante a implementação, foram corrigidos:
 ## ✨ Destaques da Implementação
 
 ### Performance
+
 - SSR para melhor SEO e velocidade
 - Fetch otimizado com includes estratégicos
 - Agregação de contadores no banco
 
 ### UX
+
 - Timestamps relativos humanizados
 - Feedback visual imediato
 - Mensagens de erro claras
 - Loading states apropriados
 
 ### Código
+
 - Componentes reutilizáveis
 - Separação de responsabilidades
 - Error handling robusto

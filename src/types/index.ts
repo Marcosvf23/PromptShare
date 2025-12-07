@@ -6,6 +6,7 @@ export interface Prompt {
   author: {
     name: string;
     avatar: string;
+    username?: string;
   };
   likes: number;
   createdAt: Date;

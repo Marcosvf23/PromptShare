@@ -37,6 +37,7 @@ export default function Home() {
           author: {
             name: post.author.name,
             avatar: post.author.avatarUrl,
+            username: post.author.username,
           },
           likes: post.likes,
           createdAt: new Date(post.createdAt),

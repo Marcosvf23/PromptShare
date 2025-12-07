@@ -93,13 +93,16 @@ export function PromptCard({ prompt, onLike }: PromptCardProps) {
         </Link>
       </CardHeader>
       <CardContent className="p-4">
-        <div className="flex items-center gap-2 mb-3">
+        <Link
+          href={`/users/${prompt.author.username || "unknown"}`}
+          className="flex items-center gap-2 mb-3 hover:opacity-80 transition-opacity"
+        >
           <Avatar className="h-8 w-8">
             <AvatarImage src={prompt.author.avatar} />
             <AvatarFallback>{prompt.author.name[0]}</AvatarFallback>
           </Avatar>
           <span className="text-sm font-medium">{prompt.author.name}</span>
-        </div>
+        </Link>
         <Link href={`/posts/${prompt.id}`}>
           <h3 className="font-semibold mb-2 text-lg hover:text-primary cursor-pointer">
             {prompt.title}
