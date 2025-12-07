@@ -86,18 +86,11 @@ export function AuthButtons() {
   return (
     <>
       <div className="flex gap-2">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setShowLogin(true)}
-        >
+        <Button variant="ghost" size="sm" onClick={() => setShowLogin(true)}>
           <LogIn className="mr-2 h-4 w-4" />
           Entrar
         </Button>
-        <Button
-          size="sm"
-          onClick={() => setShowSignup(true)}
-        >
+        <Button size="sm" onClick={() => setShowSignup(true)}>
           <UserPlus className="mr-2 h-4 w-4" />
           Criar conta
         </Button>

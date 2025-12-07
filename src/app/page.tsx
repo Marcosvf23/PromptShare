@@ -21,13 +21,13 @@ export default function Home() {
         setIsLoading(true);
         setError(null);
         const response = await fetch("/api/posts");
-        
+
         if (!response.ok) {
           throw new Error("Falha ao carregar os posts");
         }
-        
+
         const data = await response.json();
-        
+
         // Transformar dados da API para o formato do frontend
         const transformedPrompts: Prompt[] = data.map((post: any) => ({
           id: post.id,
@@ -42,11 +42,13 @@ export default function Home() {
           createdAt: new Date(post.createdAt),
           tags: post.tags.map((tag: any) => tag.name),
         }));
-        
+
         setPrompts(transformedPrompts);
       } catch (err) {
         console.error("Erro ao buscar posts:", err);
-        setError("Não foi possível carregar os posts. Tente novamente mais tarde.");
+        setError(
+          "Não foi possível carregar os posts. Tente novamente mais tarde."
+        );
       } finally {
         setIsLoading(false);
       }
@@ -111,7 +113,9 @@ export default function Home() {
         {error && !isLoading && (
           <div className="flex flex-col items-center justify-center py-12">
             <AlertCircle className="h-12 w-12 text-destructive mb-4" />
-            <p className="text-destructive font-medium mb-2">Erro ao carregar</p>
+            <p className="text-destructive font-medium mb-2">
+              Erro ao carregar
+            </p>
             <p className="text-muted-foreground text-sm">{error}</p>
             <button
               onClick={() => window.location.reload()}

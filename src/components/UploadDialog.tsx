@@ -108,9 +108,7 @@ export function UploadDialog({ onSubmit }: UploadDialogProps) {
       }, 1500);
     } catch (err) {
       console.error("Erro ao criar post:", err);
-      setError(
-        err instanceof Error ? err.message : "Erro ao criar post"
-      );
+      setError(err instanceof Error ? err.message : "Erro ao criar post");
     } finally {
       setIsSubmitting(false);
     }
@@ -208,8 +206,8 @@ export function UploadDialog({ onSubmit }: UploadDialogProps) {
           )}
         </div>
         <DialogFooter>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={() => setOpen(false)}
             disabled={isSubmitting}
           >

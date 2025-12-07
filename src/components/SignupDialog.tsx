@@ -86,7 +86,8 @@ export function SignupDialog({
         router.push("/auth/signin");
       }
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Erro ao criar conta";
+      const message =
+        error instanceof Error ? error.message : "Erro ao criar conta";
       setError(message);
     } finally {
       setLoading(false);

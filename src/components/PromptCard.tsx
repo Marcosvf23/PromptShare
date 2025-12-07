@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -80,14 +81,16 @@ export function PromptCard({ prompt, onLike }: PromptCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <CardHeader className="p-0">
-        <div className="relative w-full aspect-square">
-          <Image
-            src={prompt.imageUrl}
-            alt={prompt.title}
-            fill
-            className="object-cover"
-          />
-        </div>
+        <Link href={`/posts/${prompt.id}`}>
+          <div className="relative w-full aspect-square cursor-pointer">
+            <Image
+              src={prompt.imageUrl}
+              alt={prompt.title}
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        </Link>
       </CardHeader>
       <CardContent className="p-4">
         <div className="flex items-center gap-2 mb-3">
@@ -97,7 +100,11 @@ export function PromptCard({ prompt, onLike }: PromptCardProps) {
           </Avatar>
           <span className="text-sm font-medium">{prompt.author.name}</span>
         </div>
-        <h3 className="font-semibold mb-2 text-lg">{prompt.title}</h3>
+        <Link href={`/posts/${prompt.id}`}>
+          <h3 className="font-semibold mb-2 text-lg hover:text-primary cursor-pointer">
+            {prompt.title}
+          </h3>
+        </Link>
         <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
           {prompt.prompt}
         </p>

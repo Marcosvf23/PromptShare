@@ -7,6 +7,7 @@ A autenticação foi implementada com sucesso usando NextAuth.js v5 (beta) com s
 ## 🔑 Funcionalidades Implementadas
 
 ### Autenticação por Credenciais (Email/Senha)
+
 - ✅ Registro de novos usuários
 - ✅ Login com email e senha
 - ✅ Hash de senha com bcryptjs
@@ -14,11 +15,13 @@ A autenticação foi implementada com sucesso usando NextAuth.js v5 (beta) com s
 - ✅ Proteção de rotas
 
 ### OAuth Providers (Opcional)
+
 - ✅ Google OAuth (requer configuração)
 - ✅ GitHub OAuth (requer configuração)
 - 📝 Providers são carregados apenas se as credenciais estiverem configuradas
 
 ### Integração com o Sistema
+
 - ✅ Header com botões de Login/Criar Conta
 - ✅ Dropdown de usuário com avatar e logout
 - ✅ Upload de posts requer autenticação
@@ -88,6 +91,7 @@ model VerificationToken {
 Já está funcionando! Não requer configuração adicional.
 
 **Criar conta:**
+
 ```bash
 POST /api/auth/signup
 Content-Type: application/json
@@ -101,6 +105,7 @@ Content-Type: application/json
 ```
 
 **Fazer login:**
+
 - Clique em "Entrar" no header
 - Preencha email e senha
 - Ou use o botão "Criar conta"
@@ -122,6 +127,7 @@ GITHUB_SECRET=your_github_client_secret
 **Como obter credenciais:**
 
 **Google:**
+
 1. Acesse: https://console.cloud.google.com/apis/credentials
 2. Crie um novo projeto
 3. Crie credenciais OAuth 2.0
@@ -129,6 +135,7 @@ GITHUB_SECRET=your_github_client_secret
 5. Copie Client ID e Client Secret
 
 **GitHub:**
+
 1. Acesse: https://github.com/settings/developers
 2. Crie uma nova OAuth App
 3. Authorization callback URL: `http://localhost:3000/api/auth/callback/github`
@@ -137,48 +144,48 @@ GITHUB_SECRET=your_github_client_secret
 ### 3. Usando a Sessão no Código
 
 **Client Components:**
+
 ```tsx
 import { useSession } from "next-auth/react";
 
 function MeuComponente() {
   const { data: session, status } = useSession();
-  
+
   if (status === "loading") return <div>Carregando...</div>;
   if (!session) return <div>Não autenticado</div>;
-  
+
   return <div>Olá, {session.user.name}!</div>;
 }
 ```
 
 **Server Components:**
+
 ```tsx
 import { auth } from "@/lib/auth";
 
 async function MinhaPagina() {
   const session = await auth();
-  
+
   if (!session) {
     return <div>Acesso negado</div>;
   }
-  
+
   return <div>Bem-vindo, {session.user.name}!</div>;
 }
 ```
 
 **API Routes:**
+
 ```tsx
 import { auth } from "@/lib/auth";
 
 export async function GET() {
   const session = await auth();
-  
+
   if (!session) {
-    return NextResponse.json(
-      { error: "Não autenticado" },
-      { status: 401 }
-    );
+    return NextResponse.json({ error: "Não autenticado" }, { status: 401 });
   }
-  
+
   // Lógica protegida
 }
 ```
@@ -186,6 +193,7 @@ export async function GET() {
 ## 🔐 Segurança
 
 ### Implementado:
+
 - ✅ Hash de senha com bcrypt (10 rounds)
 - ✅ Sessão JWT com secret
 - ✅ HTTPS ready (produção)
@@ -194,6 +202,7 @@ export async function GET() {
 - ✅ Senha mínima de 6 caracteres
 
 ### Recomendações para Produção:
+
 - [ ] Implementar rate limiting
 - [ ] Adicionar verificação de email
 - [ ] Implementar recuperação de senha
@@ -211,6 +220,7 @@ Execute o script de teste:
 ```
 
 Isso irá testar:
+
 - Criação de conta
 - Validação de credenciais
 - Endpoints da API
@@ -233,17 +243,21 @@ GITHUB_SECRET=
 ## 🎯 Próximos Passos
 
 ### Funcionalidades Futuras:
+
 1. **Perfil de Usuário**
+
    - Página de perfil `/users/[username]`
    - Edição de perfil (avatar, bio, etc)
    - Lista de posts do usuário
 
 2. **Recuperação de Senha**
+
    - Endpoint de reset de senha
    - Email de verificação
    - Token temporário
 
 3. **Verificação de Email**
+
    - Email de boas-vindas
    - Link de verificação
    - Badge de verificado
@@ -260,6 +274,7 @@ npx prisma migrate dev --name add_auth
 ```
 
 A migração `20251207170055_add_auth` adicionou:
+
 - Campo `password` no modelo User
 - Campo `emailVerified` no modelo User
 - Campo `image` no modelo User
@@ -270,19 +285,23 @@ A migração `20251207170055_add_auth` adicionou:
 ## 🐛 Troubleshooting
 
 **Erro: "NEXTAUTH_SECRET is missing"**
+
 - Verifique se `.env` contém `NEXTAUTH_SECRET`
 - Reinicie o servidor após adicionar
 
 **Erro: "Database connection failed"**
+
 - Verifique `DATABASE_URL` e `DIRECT_URL`
 - Confirme que as migrações foram aplicadas
 
 **Erro: "OAuth provider not working"**
+
 - Verifique as credenciais do provider
 - Confirme que as redirect URLs estão corretas
 - Reinicie o servidor após adicionar credenciais
 
 **Sessão não persiste:**
+
 - Limpe cookies do navegador
 - Verifique se `NEXTAUTH_SECRET` não mudou
 - Confirme que `session.strategy` está como "jwt"
@@ -290,6 +309,7 @@ A migração `20251207170055_add_auth` adicionou:
 ## ✨ Exemplos de Uso
 
 ### Componente Protegido:
+
 ```tsx
 "use client";
 
@@ -298,7 +318,7 @@ import { LoginDialog } from "@/components/LoginDialog";
 
 export function ProtectedFeature() {
   const { data: session } = useSession();
-  
+
   if (!session) {
     return (
       <div>
@@ -307,12 +327,13 @@ export function ProtectedFeature() {
       </div>
     );
   }
-  
+
   return <div>Conteúdo protegido</div>;
 }
 ```
 
 ### Middleware de Proteção:
+
 ```tsx
 // middleware.ts
 export { auth as middleware } from "@/lib/auth";

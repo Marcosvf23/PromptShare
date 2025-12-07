@@ -134,7 +134,7 @@ export async function POST(request: Request) {
     if (tags && Array.isArray(tags) && tags.length > 0) {
       for (const tagName of tags) {
         const slug = tagName.toLowerCase().replace(/\s+/g, "-");
-        
+
         // Buscar ou criar tag
         let tag = await prisma.tag.findUnique({
           where: { slug },
@@ -212,10 +212,12 @@ export async function POST(request: Request) {
         name: completePost!.user.name || "Anonymous User",
         avatarUrl: completePost!.user.avatarUrl || "",
       },
-      tags: completePost!.tags.map((pt: { tag: { name: string; slug: string } }) => ({
-        name: pt.tag.name,
-        slug: pt.tag.slug,
-      })),
+      tags: completePost!.tags.map(
+        (pt: { tag: { name: string; slug: string } }) => ({
+          name: pt.tag.name,
+          slug: pt.tag.slug,
+        })
+      ),
       likes: completePost!._count.likes,
       comments: completePost!._count.comments,
       createdAt: completePost!.createdAt.toISOString(),
@@ -224,9 +226,6 @@ export async function POST(request: Request) {
     return NextResponse.json(response, { status: 201 });
   } catch (error) {
     console.error("Erro ao criar post:", error);
-    return NextResponse.json(
-      { error: "Falha ao criar post" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Falha ao criar post" }, { status: 500 });
   }
 }
