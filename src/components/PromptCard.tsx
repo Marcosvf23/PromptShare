@@ -16,12 +16,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Heart, Copy, Check, Loader2 } from "lucide-react";
 import { Prompt } from "@/types";
 
-interface PromptCardProps {
-  prompt: Prompt;
+export interface PromptCardProps extends Prompt {
   onLike?: (id: string, newCount: number) => void;
 }
 
-export function PromptCard({ prompt, onLike }: PromptCardProps) {
+export function PromptCard(props: PromptCardProps) {
+  const { onLike, ...prompt } = props;
   const { data: session } = useSession();
   const [copied, setCopied] = useState(false);
   const [liked, setLiked] = useState(false);

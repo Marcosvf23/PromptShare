@@ -2,11 +2,9 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { PromptCard } from "@/components/PromptCard";
-import { UploadDialog } from "@/components/UploadDialog";
-import { SearchBar } from "@/components/SearchBar";
-import { AuthButtons } from "@/components/AuthButtons";
+import { Navbar } from "@/components/Navbar";
 import { Prompt } from "@/types";
-import { Sparkles, Loader2, AlertCircle } from "lucide-react";
+import { Loader2, AlertCircle } from "lucide-react";
 
 export default function Home() {
   const [prompts, setPrompts] = useState<Prompt[]>([]);
@@ -73,23 +71,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 z-10">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-6 w-6 text-primary" />
-              <h1 className="text-2xl font-bold">PromptShare</h1>
-            </div>
-            <div className="flex-1 flex justify-center max-w-2xl">
-              <SearchBar onSearch={setSearchQuery} />
-            </div>
-            <div className="flex items-center gap-2">
-              <UploadDialog />
-              <AuthButtons />
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navbar onSearch={setSearchQuery} />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
@@ -142,7 +124,7 @@ export default function Home() {
         {!isLoading && !error && filteredPrompts.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredPrompts.map((prompt) => (
-              <PromptCard key={prompt.id} prompt={prompt} />
+              <PromptCard key={prompt.id} {...prompt} />
             ))}
           </div>
         )}

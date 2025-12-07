@@ -625,3 +625,125 @@ prisma:query SELECT "public"."Tag"."id", "public"."Tag"."name", "public"."Tag"."
  GET /users/joao_silva 200 in 329ms (compile: 209ms, render: 119ms)
  GET /api/auth/session 200 in 68ms (compile: 48ms, render: 20ms)
  GET /api/auth/session 200 in 12ms (compile: 3ms, render: 9ms)
+ GET / 200 in 154ms (compile: 122ms, render: 32ms)
+ GET / 200 in 12ms (compile: 1719µs, render: 10ms)
+ GET / 200 in 14ms (compile: 1729µs, render: 12ms)
+ GET / 200 in 12ms (compile: 1808µs, render: 10ms)
+ GET / 200 in 14ms (compile: 1554µs, render: 12ms)
+ GET / 200 in 15ms (compile: 1744µs, render: 13ms)
+ GET / 200 in 11ms (compile: 1601µs, render: 9ms)
+ GET / 200 in 12ms (compile: 1620µs, render: 10ms)
+ GET / 200 in 16ms (compile: 1631µs, render: 14ms)
+ GET / 200 in 15ms (compile: 2ms, render: 13ms)
+ GET / 200 in 14ms (compile: 1656µs, render: 12ms)
+ GET / 200 in 14ms (compile: 1602µs, render: 13ms)
+ GET / 200 in 13ms (compile: 1729µs, render: 12ms)
+ GET / 200 in 13ms (compile: 2ms, render: 10ms)
+ GET / 200 in 12ms (compile: 1589µs, render: 11ms)
+ GET / 200 in 17ms (compile: 4ms, render: 14ms)
+ GET / 200 in 26ms (compile: 1894µs, render: 24ms)
+ GET / 200 in 18ms (compile: 2ms, render: 16ms)
+ GET / 200 in 20ms (compile: 6ms, render: 14ms)
+ GET / 200 in 20ms (compile: 2ms, render: 18ms)
+ GET / 200 in 27ms (compile: 5ms, render: 22ms)
+ GET / 200 in 34ms (compile: 3ms, render: 31ms)
+ GET / 200 in 16ms (compile: 2ms, render: 14ms)
+ GET / 200 in 14ms (compile: 1767µs, render: 12ms)
+ GET / 200 in 14ms (compile: 2ms, render: 12ms)
+ GET / 200 in 22ms (compile: 3ms, render: 19ms)
+ GET / 200 in 19ms (compile: 2ms, render: 17ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+ GET / 200 in 15ms (compile: 2ms, render: 13ms)
+ GET / 200 in 25ms (compile: 3ms, render: 22ms)
+ GET / 200 in 21ms (compile: 3ms, render: 18ms)
+ GET / 200 in 14ms (compile: 3ms, render: 12ms)
+ GET / 200 in 290ms (compile: 177ms, render: 113ms)
+ GET / 200 in 23ms (compile: 2ms, render: 20ms)
+ GET / 200 in 24ms (compile: 5ms, render: 19ms)
+ GET / 200 in 19ms (compile: 4ms, render: 15ms)
+ GET / 200 in 21ms (compile: 1973µs, render: 19ms)
+ GET / 200 in 44ms (compile: 3ms, render: 41ms)
+ GET / 200 in 18ms (compile: 3ms, render: 15ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+ GET / 200 in 26ms (compile: 3ms, render: 23ms)
+ GET / 200 in 19ms (compile: 3ms, render: 16ms)
+ GET / 200 in 16ms (compile: 2ms, render: 14ms)
+ GET / 200 in 26ms (compile: 3ms, render: 24ms)
+ GET / 200 in 12ms (compile: 2ms, render: 10ms)
+ GET / 200 in 13ms (compile: 1679µs, render: 12ms)
+ GET / 200 in 12ms (compile: 1631µs, render: 11ms)
+ GET / 200 in 11ms (compile: 1520µs, render: 9ms)
+ GET / 200 in 13ms (compile: 1603µs, render: 12ms)
+ GET / 200 in 20ms (compile: 1844µs, render: 18ms)
+ GET / 200 in 20ms (compile: 2ms, render: 17ms)
+ GET / 200 in 12ms (compile: 2ms, render: 10ms)
+ GET / 200 in 14ms (compile: 1699µs, render: 13ms)
+ GET / 200 in 12ms (compile: 1886µs, render: 10ms)
+ GET / 200 in 15ms (compile: 2ms, render: 13ms)
+ GET / 200 in 19ms (compile: 2ms, render: 17ms)
+ GET / 200 in 13ms (compile: 1802µs, render: 11ms)
+ GET / 200 in 11ms (compile: 1656µs, render: 10ms)
+ GET / 200 in 20ms (compile: 3ms, render: 18ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+ GET / 200 in 16ms (compile: 2ms, render: 13ms)
+ GET / 200 in 21ms (compile: 4ms, render: 17ms)
+ GET / 200 in 15ms (compile: 2ms, render: 13ms)
+ GET / 200 in 18ms (compile: 3ms, render: 15ms)
+ GET / 200 in 16ms (compile: 3ms, render: 13ms)
+ GET / 200 in 21ms (compile: 3ms, render: 18ms)
+ ✓ Compiled in 140ms
+ ✓ Compiled in 48ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 112ms
+ GET / 200 in 302ms (compile: 127ms, render: 174ms)
+ GET /api/auth/session 200 in 110ms (compile: 88ms, render: 22ms)
+ GET /api/auth/session 200 in 20ms (compile: 5ms, render: 15ms)
+prisma:query SELECT "public"."Post"."id", "public"."Post"."title", "public"."Post"."prompt", "public"."Post"."negativePrompt", "public"."Post"."imageUrl", "public"."Post"."thumbnailUrl", "public"."Post"."width", "public"."Post"."height", "public"."Post"."model", "public"."Post"."steps", "public"."Post"."seed", "public"."Post"."cfgScale", "public"."Post"."sampler", "public"."Post"."userId", "public"."Post"."viewCount", "public"."Post"."likeCount", "public"."Post"."commentCount", "public"."Post"."published", "public"."Post"."featured", "public"."Post"."createdAt", "public"."Post"."updatedAt", COALESCE("aggr_selection_0_Like"."_aggr_count_likes", 0) AS "_aggr_count_likes", COALESCE("aggr_selection_1_Comment"."_aggr_count_comments", 0) AS "_aggr_count_comments" FROM "public"."Post" LEFT JOIN (SELECT "public"."Like"."postId", COUNT(*) AS "_aggr_count_likes" FROM "public"."Like" WHERE 1=1 GROUP BY "public"."Like"."postId") AS "aggr_selection_0_Like" ON ("public"."Post"."id" = "aggr_selection_0_Like"."postId") LEFT JOIN (SELECT "public"."Comment"."postId", COUNT(*) AS "_aggr_count_comments" FROM "public"."Comment" WHERE 1=1 GROUP BY "public"."Comment"."postId") AS "aggr_selection_1_Comment" ON ("public"."Post"."id" = "aggr_selection_1_Comment"."postId") WHERE 1=1 ORDER BY "public"."Post"."createdAt" DESC OFFSET $1
+prisma:query SELECT "public"."User"."id", "public"."User"."username", "public"."User"."name", "public"."User"."avatarUrl" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
+prisma:query SELECT "public"."PostTag"."postId", "public"."PostTag"."tagId" FROM "public"."PostTag" WHERE "public"."PostTag"."postId" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
+prisma:query SELECT "public"."Tag"."id", "public"."Tag"."name", "public"."Tag"."slug", "public"."Tag"."postCount", "public"."Tag"."createdAt" FROM "public"."Tag" WHERE "public"."Tag"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) OFFSET $16
+ GET /api/posts 200 in 3.5s (compile: 76ms, render: 3.4s)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 294ms
+ ⨯ ReferenceError: Navbar is not defined
+    at Home (src/app/page.tsx:76:8)
+  74 |     <div className="min-h-screen bg-background">
+  75 |       {/* Header */}
+> 76 |       <Navbar onSearch={setSearchQuery} />
+     |        ^
+  77 |
+  78 |       {/* Main Content */}
+  79 |       <main className="container mx-auto px-4 py-8"> {
+  digest: '3039034843'
+}
+ GET / 500 in 211ms (compile: 80ms, render: 131ms)
+ ✓ Compiled in 240ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 209ms (compile: 78ms, render: 131ms)
+ GET /api/auth/session 200 in 47ms (compile: 32ms, render: 15ms)
+ GET /api/auth/session 200 in 14ms (compile: 3ms, render: 11ms)
+prisma:query SELECT "public"."Post"."id", "public"."Post"."title", "public"."Post"."prompt", "public"."Post"."negativePrompt", "public"."Post"."imageUrl", "public"."Post"."thumbnailUrl", "public"."Post"."width", "public"."Post"."height", "public"."Post"."model", "public"."Post"."steps", "public"."Post"."seed", "public"."Post"."cfgScale", "public"."Post"."sampler", "public"."Post"."userId", "public"."Post"."viewCount", "public"."Post"."likeCount", "public"."Post"."commentCount", "public"."Post"."published", "public"."Post"."featured", "public"."Post"."createdAt", "public"."Post"."updatedAt", COALESCE("aggr_selection_0_Like"."_aggr_count_likes", 0) AS "_aggr_count_likes", COALESCE("aggr_selection_1_Comment"."_aggr_count_comments", 0) AS "_aggr_count_comments" FROM "public"."Post" LEFT JOIN (SELECT "public"."Like"."postId", COUNT(*) AS "_aggr_count_likes" FROM "public"."Like" WHERE 1=1 GROUP BY "public"."Like"."postId") AS "aggr_selection_0_Like" ON ("public"."Post"."id" = "aggr_selection_0_Like"."postId") LEFT JOIN (SELECT "public"."Comment"."postId", COUNT(*) AS "_aggr_count_comments" FROM "public"."Comment" WHERE 1=1 GROUP BY "public"."Comment"."postId") AS "aggr_selection_1_Comment" ON ("public"."Post"."id" = "aggr_selection_1_Comment"."postId") WHERE 1=1 ORDER BY "public"."Post"."createdAt" DESC OFFSET $1
+prisma:query SELECT "public"."User"."id", "public"."User"."username", "public"."User"."name", "public"."User"."avatarUrl" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
+prisma:query SELECT "public"."PostTag"."postId", "public"."PostTag"."tagId" FROM "public"."PostTag" WHERE "public"."PostTag"."postId" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
+prisma:query SELECT "public"."Tag"."id", "public"."Tag"."name", "public"."Tag"."slug", "public"."Tag"."postCount", "public"."Tag"."createdAt" FROM "public"."Tag" WHERE "public"."Tag"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) OFFSET $16
+ GET /api/posts 200 in 3.4s (compile: 3ms, render: 3.4s)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 39ms
+ GET / 200 in 210ms (compile: 102ms, render: 107ms)
+ GET /api/auth/session 200 in 46ms (compile: 29ms, render: 17ms)
+ GET /api/auth/session 200 in 21ms (compile: 2ms, render: 19ms)
+prisma:query SELECT "public"."Post"."id", "public"."Post"."title", "public"."Post"."prompt", "public"."Post"."negativePrompt", "public"."Post"."imageUrl", "public"."Post"."thumbnailUrl", "public"."Post"."width", "public"."Post"."height", "public"."Post"."model", "public"."Post"."steps", "public"."Post"."seed", "public"."Post"."cfgScale", "public"."Post"."sampler", "public"."Post"."userId", "public"."Post"."viewCount", "public"."Post"."likeCount", "public"."Post"."commentCount", "public"."Post"."published", "public"."Post"."featured", "public"."Post"."createdAt", "public"."Post"."updatedAt", COALESCE("aggr_selection_0_Like"."_aggr_count_likes", 0) AS "_aggr_count_likes", COALESCE("aggr_selection_1_Comment"."_aggr_count_comments", 0) AS "_aggr_count_comments" FROM "public"."Post" LEFT JOIN (SELECT "public"."Like"."postId", COUNT(*) AS "_aggr_count_likes" FROM "public"."Like" WHERE 1=1 GROUP BY "public"."Like"."postId") AS "aggr_selection_0_Like" ON ("public"."Post"."id" = "aggr_selection_0_Like"."postId") LEFT JOIN (SELECT "public"."Comment"."postId", COUNT(*) AS "_aggr_count_comments" FROM "public"."Comment" WHERE 1=1 GROUP BY "public"."Comment"."postId") AS "aggr_selection_1_Comment" ON ("public"."Post"."id" = "aggr_selection_1_Comment"."postId") WHERE 1=1 ORDER BY "public"."Post"."createdAt" DESC OFFSET $1
+prisma:query SELECT "public"."User"."id", "public"."User"."username", "public"."User"."name", "public"."User"."avatarUrl" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
+prisma:query SELECT "public"."PostTag"."postId", "public"."PostTag"."tagId" FROM "public"."PostTag" WHERE "public"."PostTag"."postId" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
+prisma:query SELECT "public"."Tag"."id", "public"."Tag"."name", "public"."Tag"."slug", "public"."Tag"."postCount", "public"."Tag"."createdAt" FROM "public"."Tag" WHERE "public"."Tag"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) OFFSET $16
+ GET /api/posts 200 in 3.8s (compile: 4ms, render: 3.8s)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 105ms
+ GET / 200 in 271ms (compile: 129ms, render: 141ms)
+ GET /api/auth/session 200 in 51ms (compile: 29ms, render: 22ms)
+ GET /api/auth/session 200 in 14ms (compile: 2ms, render: 12ms)
+prisma:query SELECT "public"."Post"."id", "public"."Post"."title", "public"."Post"."prompt", "public"."Post"."negativePrompt", "public"."Post"."imageUrl", "public"."Post"."thumbnailUrl", "public"."Post"."width", "public"."Post"."height", "public"."Post"."model", "public"."Post"."steps", "public"."Post"."seed", "public"."Post"."cfgScale", "public"."Post"."sampler", "public"."Post"."userId", "public"."Post"."viewCount", "public"."Post"."likeCount", "public"."Post"."commentCount", "public"."Post"."published", "public"."Post"."featured", "public"."Post"."createdAt", "public"."Post"."updatedAt", COALESCE("aggr_selection_0_Like"."_aggr_count_likes", 0) AS "_aggr_count_likes", COALESCE("aggr_selection_1_Comment"."_aggr_count_comments", 0) AS "_aggr_count_comments" FROM "public"."Post" LEFT JOIN (SELECT "public"."Like"."postId", COUNT(*) AS "_aggr_count_likes" FROM "public"."Like" WHERE 1=1 GROUP BY "public"."Like"."postId") AS "aggr_selection_0_Like" ON ("public"."Post"."id" = "aggr_selection_0_Like"."postId") LEFT JOIN (SELECT "public"."Comment"."postId", COUNT(*) AS "_aggr_count_comments" FROM "public"."Comment" WHERE 1=1 GROUP BY "public"."Comment"."postId") AS "aggr_selection_1_Comment" ON ("public"."Post"."id" = "aggr_selection_1_Comment"."postId") WHERE 1=1 ORDER BY "public"."Post"."createdAt" DESC OFFSET $1
+prisma:query SELECT "public"."User"."id", "public"."User"."username", "public"."User"."name", "public"."User"."avatarUrl" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
+prisma:query SELECT "public"."PostTag"."postId", "public"."PostTag"."tagId" FROM "public"."PostTag" WHERE "public"."PostTag"."postId" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
+prisma:query SELECT "public"."Tag"."id", "public"."Tag"."name", "public"."Tag"."slug", "public"."Tag"."postCount", "public"."Tag"."createdAt" FROM "public"."Tag" WHERE "public"."Tag"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) OFFSET $16
+ GET /api/posts 200 in 3.7s (compile: 3ms, render: 3.7s)
