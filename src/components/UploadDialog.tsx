@@ -122,7 +122,7 @@ export function UploadDialog({ onSubmit }: UploadDialogProps) {
           Compartilhar Prompt
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] flex flex-col">
         <DialogHeader>
           <DialogTitle>Compartilhar Novo Prompt</DialogTitle>
           <DialogDescription>
@@ -130,7 +130,7 @@ export function UploadDialog({ onSubmit }: UploadDialogProps) {
             comunidade.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className="grid gap-4 py-4 overflow-y-auto flex-1">
           <div className="grid gap-2">
             <Label htmlFor="image">Imagem</Label>
             <div className="flex items-center gap-4">

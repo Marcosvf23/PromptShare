@@ -29,7 +29,10 @@ interface EditProfileDialogProps {
   onSuccess?: () => void;
 }
 
-export function EditProfileDialog({ currentUser, onSuccess }: EditProfileDialogProps) {
+export function EditProfileDialog({
+  currentUser,
+  onSuccess,
+}: EditProfileDialogProps) {
   const { update } = useSession();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -69,7 +72,7 @@ export function EditProfileDialog({ currentUser, onSuccess }: EditProfileDialogP
       });
 
       setOpen(false);
-      
+
       // Callback de sucesso
       if (onSuccess) {
         onSuccess();
@@ -117,7 +120,8 @@ export function EditProfileDialog({ currentUser, onSuccess }: EditProfileDialogP
           <DialogHeader>
             <DialogTitle>Editar Perfil</DialogTitle>
             <DialogDescription>
-              Atualize suas informações públicas. Clique em salvar quando terminar.
+              Atualize suas informações públicas. Clique em salvar quando
+              terminar.
             </DialogDescription>
           </DialogHeader>
 

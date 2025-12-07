@@ -962,3 +962,20 @@ https://nextjs.org/docs/messages/module-not-found
 
  GET / 200 in 25ms (compile: 6ms, render: 19ms)
  ✓ Compiled in 144ms
+ ✓ Compiled in 158ms
+ GET / 200 in 486ms (compile: 401ms, render: 85ms)
+ GET / 200 in 26ms (compile: 4ms, render: 23ms)
+ GET / 200 in 25ms (compile: 4ms, render: 21ms)
+ GET / 200 in 27ms (compile: 2ms, render: 25ms)
+ ✓ Compiled in 208ms
+ GET / 200 in 11.4s (compile: 11.3s, render: 99ms)
+ GET / 200 in 99ms (compile: 53ms, render: 45ms)
+ GET / 200 in 32ms (compile: 4ms, render: 28ms)
+ GET / 200 in 588ms (compile: 10ms, render: 578ms)
+ GET /api/auth/session 200 in 5.9s (compile: 3.1s, render: 2.9s)
+ GET /api/auth/session 200 in 71ms (compile: 44ms, render: 28ms)
+prisma:query SELECT "public"."Post"."id", "public"."Post"."title", "public"."Post"."prompt", "public"."Post"."negativePrompt", "public"."Post"."imageUrl", "public"."Post"."thumbnailUrl", "public"."Post"."width", "public"."Post"."height", "public"."Post"."model", "public"."Post"."steps", "public"."Post"."seed", "public"."Post"."cfgScale", "public"."Post"."sampler", "public"."Post"."userId", "public"."Post"."viewCount", "public"."Post"."likeCount", "public"."Post"."commentCount", "public"."Post"."published", "public"."Post"."featured", "public"."Post"."createdAt", "public"."Post"."updatedAt", COALESCE("aggr_selection_0_Like"."_aggr_count_likes", 0) AS "_aggr_count_likes", COALESCE("aggr_selection_1_Comment"."_aggr_count_comments", 0) AS "_aggr_count_comments" FROM "public"."Post" LEFT JOIN (SELECT "public"."Like"."postId", COUNT(*) AS "_aggr_count_likes" FROM "public"."Like" WHERE 1=1 GROUP BY "public"."Like"."postId") AS "aggr_selection_0_Like" ON ("public"."Post"."id" = "aggr_selection_0_Like"."postId") LEFT JOIN (SELECT "public"."Comment"."postId", COUNT(*) AS "_aggr_count_comments" FROM "public"."Comment" WHERE 1=1 GROUP BY "public"."Comment"."postId") AS "aggr_selection_1_Comment" ON ("public"."Post"."id" = "aggr_selection_1_Comment"."postId") WHERE 1=1 ORDER BY "public"."Post"."createdAt" DESC OFFSET $1
+prisma:query SELECT "public"."User"."id", "public"."User"."username", "public"."User"."name", "public"."User"."avatarUrl" FROM "public"."User" WHERE "public"."User"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8) OFFSET $9
+prisma:query SELECT "public"."PostTag"."postId", "public"."PostTag"."tagId" FROM "public"."PostTag" WHERE "public"."PostTag"."postId" IN ($1,$2,$3,$4,$5,$6,$7,$8) OFFSET $9
+prisma:query SELECT "public"."Tag"."id", "public"."Tag"."name", "public"."Tag"."slug", "public"."Tag"."postCount", "public"."Tag"."createdAt" FROM "public"."Tag" WHERE "public"."Tag"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19) OFFSET $20
+ GET /api/posts 200 in 13.5s (compile: 569ms, render: 13.0s)

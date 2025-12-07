@@ -13,7 +13,11 @@ const updateProfileSchema = z.object({
     .regex(/^[a-zA-Z0-9_]+$/, "Username deve conter apenas letras, números e _")
     .optional(),
   bio: z.string().max(500, "Bio muito longa").optional(),
-  avatarUrl: z.string().url("URL de avatar inválida").optional().or(z.literal("")),
+  avatarUrl: z
+    .string()
+    .url("URL de avatar inválida")
+    .optional()
+    .or(z.literal("")),
 });
 
 // GET /api/profile - Obter perfil do usuário autenticado
@@ -22,10 +26,7 @@ export async function GET() {
     const session = await auth();
 
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: "Não autenticado" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Não autenticado" }, { status: 401 });
     }
 
     const user = await prisma.user.findUnique({
@@ -63,10 +64,7 @@ export async function PATCH(request: NextRequest) {
     const session = await auth();
 
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: "Não autenticado" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Não autenticado" }, { status: 401 });
     }
 
     const body = await request.json();
@@ -75,9 +73,9 @@ export async function PATCH(request: NextRequest) {
     const validation = updateProfileSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
-        { 
-          error: "Dados inválidos", 
-          details: validation.error.issues 
+        {
+          error: "Dados inválidos",
+          details: validation.error.issues,
         },
         { status: 400 }
       );
