@@ -747,3 +747,218 @@ prisma:query SELECT "public"."User"."id", "public"."User"."username", "public"."
 prisma:query SELECT "public"."PostTag"."postId", "public"."PostTag"."tagId" FROM "public"."PostTag" WHERE "public"."PostTag"."postId" IN ($1,$2,$3,$4,$5,$6) OFFSET $7
 prisma:query SELECT "public"."Tag"."id", "public"."Tag"."name", "public"."Tag"."slug", "public"."Tag"."postCount", "public"."Tag"."createdAt" FROM "public"."Tag" WHERE "public"."Tag"."id" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) OFFSET $16
  GET /api/posts 200 in 3.7s (compile: 3ms, render: 3.7s)
+ ✓ Compiled in 182ms
+ GET / 200 in 190ms (compile: 159ms, render: 31ms)
+ GET / 200 in 14ms (compile: 2ms, render: 12ms)
+ GET / 200 in 15ms (compile: 1536µs, render: 14ms)
+ GET / 200 in 15ms (compile: 1640µs, render: 14ms)
+ GET / 200 in 15ms (compile: 2ms, render: 12ms)
+ GET / 200 in 13ms (compile: 1532µs, render: 12ms)
+ GET / 200 in 14ms (compile: 1914µs, render: 12ms)
+ GET / 200 in 15ms (compile: 2ms, render: 13ms)
+ GET / 200 in 15ms (compile: 1631µs, render: 13ms)
+ GET / 200 in 13ms (compile: 1598µs, render: 12ms)
+ GET / 200 in 31ms (compile: 3ms, render: 28ms)
+ GET / 200 in 19ms (compile: 2ms, render: 17ms)
+ GET / 200 in 18ms (compile: 3ms, render: 15ms)
+ GET / 200 in 21ms (compile: 3ms, render: 18ms)
+ GET / 200 in 14ms (compile: 2ms, render: 12ms)
+ GET / 200 in 14ms (compile: 1621µs, render: 12ms)
+ GET / 200 in 19ms (compile: 2ms, render: 16ms)
+ GET / 200 in 12ms (compile: 2ms, render: 10ms)
+ GET / 200 in 13ms (compile: 3ms, render: 10ms)
+ GET / 200 in 16ms (compile: 1790µs, render: 14ms)
+ GET / 200 in 14ms (compile: 2ms, render: 12ms)
+ GET / 200 in 12ms (compile: 1611µs, render: 10ms)
+ GET / 200 in 29ms (compile: 3ms, render: 26ms)
+ GET / 200 in 28ms (compile: 2ms, render: 26ms)
+ GET / 200 in 19ms (compile: 2ms, render: 16ms)
+ GET / 200 in 17ms (compile: 2ms, render: 15ms)
+ GET / 200 in 13ms (compile: 2ms, render: 11ms)
+ GET / 200 in 14ms (compile: 2ms, render: 12ms)
+ GET / 200 in 16ms (compile: 2ms, render: 13ms)
+ GET / 200 in 16ms (compile: 1769µs, render: 14ms)
+ GET / 200 in 23ms (compile: 3ms, render: 20ms)
+ GET / 200 in 18ms (compile: 6ms, render: 12ms)
+ GET / 200 in 14ms (compile: 2ms, render: 12ms)
+ GET / 200 in 18ms (compile: 3ms, render: 16ms)
+ GET / 200 in 18ms (compile: 5ms, render: 13ms)
+ GET / 200 in 24ms (compile: 1804µs, render: 22ms)
+ GET / 200 in 11ms (compile: 2ms, render: 9ms)
+ ✓ Compiled in 105ms
+ ⨯ ./src/components/EditProfileDialog.tsx:20:1
+Module not found: Can't resolve '@/components/ui/alert'
+[0m [90m 18 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[33m;[39m
+ [90m 19 |[39m [36mimport[39m { [33mPencil[39m[33m,[39m [33mLoader2[39m[33m,[39m [33mAlertCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 20 |[39m [36mimport[39m { [33mAlert[39m[33m,[39m [33mAlertDescription[39m } [36mfrom[39m [32m"@/components/ui/alert"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 21 |[39m
+ [90m 22 |[39m [36minterface[39m [33mEditProfileDialogProps[39m {
+ [90m 23 |[39m   currentUser[33m:[39m {[0m
+
+Import map: aliased to relative './src/components/ui/alert' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/EditProfileDialog.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/EditProfileDialog.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/components/EditProfileDialog.tsx:20:1
+Module not found: Can't resolve '@/components/ui/alert'
+[0m [90m 18 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[33m;[39m
+ [90m 19 |[39m [36mimport[39m { [33mPencil[39m[33m,[39m [33mLoader2[39m[33m,[39m [33mAlertCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 20 |[39m [36mimport[39m { [33mAlert[39m[33m,[39m [33mAlertDescription[39m } [36mfrom[39m [32m"@/components/ui/alert"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 21 |[39m
+ [90m 22 |[39m [36minterface[39m [33mEditProfileDialogProps[39m {
+ [90m 23 |[39m   currentUser[33m:[39m {[0m
+
+Import map: aliased to relative './src/components/ui/alert' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/EditProfileDialog.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/EditProfileDialog.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/components/EditProfileDialog.tsx:20:1
+Module not found: Can't resolve '@/components/ui/alert'
+[0m [90m 18 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[33m;[39m
+ [90m 19 |[39m [36mimport[39m { [33mPencil[39m[33m,[39m [33mLoader2[39m[33m,[39m [33mAlertCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 20 |[39m [36mimport[39m { [33mAlert[39m[33m,[39m [33mAlertDescription[39m } [36mfrom[39m [32m"@/components/ui/alert"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 21 |[39m
+ [90m 22 |[39m [36minterface[39m [33mEditProfileDialogProps[39m {
+ [90m 23 |[39m   currentUser[33m:[39m {[0m
+
+Import map: aliased to relative './src/components/ui/alert' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/EditProfileDialog.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/EditProfileDialog.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/components/EditProfileDialog.tsx:20:1
+Module not found: Can't resolve '@/components/ui/alert'
+[0m [90m 18 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[33m;[39m
+ [90m 19 |[39m [36mimport[39m { [33mPencil[39m[33m,[39m [33mLoader2[39m[33m,[39m [33mAlertCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 20 |[39m [36mimport[39m { [33mAlert[39m[33m,[39m [33mAlertDescription[39m } [36mfrom[39m [32m"@/components/ui/alert"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 21 |[39m
+ [90m 22 |[39m [36minterface[39m [33mEditProfileDialogProps[39m {
+ [90m 23 |[39m   currentUser[33m:[39m {[0m
+
+Import map: aliased to relative './src/components/ui/alert' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/EditProfileDialog.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/EditProfileDialog.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/components/EditProfileDialog.tsx:20:1
+Module not found: Can't resolve '@/components/ui/alert'
+[0m [90m 18 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[33m;[39m
+ [90m 19 |[39m [36mimport[39m { [33mPencil[39m[33m,[39m [33mLoader2[39m[33m,[39m [33mAlertCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 20 |[39m [36mimport[39m { [33mAlert[39m[33m,[39m [33mAlertDescription[39m } [36mfrom[39m [32m"@/components/ui/alert"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 21 |[39m
+ [90m 22 |[39m [36minterface[39m [33mEditProfileDialogProps[39m {
+ [90m 23 |[39m   currentUser[33m:[39m {[0m
+
+Import map: aliased to relative './src/components/ui/alert' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/EditProfileDialog.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/EditProfileDialog.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/components/EditProfileDialog.tsx:20:1
+Module not found: Can't resolve '@/components/ui/alert'
+[0m [90m 18 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[33m;[39m
+ [90m 19 |[39m [36mimport[39m { [33mPencil[39m[33m,[39m [33mLoader2[39m[33m,[39m [33mAlertCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 20 |[39m [36mimport[39m { [33mAlert[39m[33m,[39m [33mAlertDescription[39m } [36mfrom[39m [32m"@/components/ui/alert"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 21 |[39m
+ [90m 22 |[39m [36minterface[39m [33mEditProfileDialogProps[39m {
+ [90m 23 |[39m   currentUser[33m:[39m {[0m
+
+Import map: aliased to relative './src/components/ui/alert' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/EditProfileDialog.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Client Component Browser]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/EditProfileDialog.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Client Component SSR]
+    ./src/components/UserProfileClient.tsx [Server Component]
+    ./src/app/users/[username]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ GET / 200 in 25ms (compile: 6ms, render: 19ms)
+ ✓ Compiled in 144ms

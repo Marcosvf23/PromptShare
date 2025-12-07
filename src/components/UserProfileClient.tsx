@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PromptCard } from "@/components/PromptCard";
 import { FollowButton } from "@/components/FollowButton";
+import { EditProfileDialog } from "@/components/EditProfileDialog";
 import {
   ArrowLeft,
   Calendar,
@@ -41,40 +42,41 @@ export function UserProfileClient({ username }: UserProfileClientProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setIsLoading(true);
-        setError(null);
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
 
-        // Buscar usuário
-        const userResponse = await fetch(`/api/users/${username}`);
-        if (!userResponse.ok) {
-          if (userResponse.status === 404) {
-            setError("Usuário não encontrado");
-          } else {
-            setError("Erro ao carregar perfil");
-          }
-          return;
+      // Buscar usuário
+      const userResponse = await fetch(`/api/users/${username}`);
+      if (!userResponse.ok) {
+        if (userResponse.status === 404) {
+          setError("Usuário não encontrado");
+        } else {
+          setError("Erro ao carregar perfil");
         }
-        const userData = await userResponse.json();
-        setUser(userData);
-
-        // Buscar posts
-        const postsResponse = await fetch(`/api/users/${username}/posts`);
-        if (postsResponse.ok) {
-          const postsData = await postsResponse.json();
-          setPosts(postsData);
-        }
-      } catch (err) {
-        console.error("Error fetching user data:", err);
-        setError("Erro ao carregar dados");
-      } finally {
-        setIsLoading(false);
+        return;
       }
-    }
+      const userData = await userResponse.json();
+      setUser(userData);
 
+      // Buscar posts
+      const postsResponse = await fetch(`/api/users/${username}/posts`);
+      if (postsResponse.ok) {
+        const postsData = await postsResponse.json();
+        setPosts(postsData);
+      }
+    } catch (err) {
+      console.error("Error fetching user data:", err);
+      setError("Erro ao carregar dados");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
 
   const formatDate = (dateString: string) => {
@@ -220,15 +222,19 @@ export function UserProfileClient({ username }: UserProfileClientProps) {
                     );
                   }}
                 />
-                {!isOwnProfile && (
-                  <Button variant="ghost" size="sm">
-                    Mensagem
-                  </Button>
-                )}
                 {isOwnProfile && (
-                  <Button variant="outline" size="sm">
-                    Editar Perfil
-                  </Button>
+                  <EditProfileDialog
+                    currentUser={{
+                      name: user.name,
+                      username: user.username,
+                      bio: user.bio,
+                      avatarUrl: user.avatarUrl,
+                    }}
+                    onSuccess={() => {
+                      // Recarregar dados do perfil
+                      fetchData();
+                    }}
+                  />
                 )}
               </div>
             </div>
