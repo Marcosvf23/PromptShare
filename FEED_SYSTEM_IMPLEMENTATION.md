@@ -7,6 +7,7 @@ Sistema completo de feed personalizado que mostra posts de usuários que você s
 ## 🎯 Funcionalidades Implementadas
 
 ### API de Feed
+
 - ✅ `GET /api/feed` - Feed personalizado baseado em seguindo
 - ✅ Retorna posts de quem você segue (máx. 50 posts)
 - ✅ Fallback para posts populares se não seguir ninguém
@@ -15,6 +16,7 @@ Sistema completo de feed personalizado que mostra posts de usuários que você s
 - ✅ Ordenação por likes para posts populares
 
 ### Página de Feed (/feed)
+
 - ✅ Interface dedicada para o feed personalizado
 - ✅ Indicador visual do tipo de feed (following/popular)
 - ✅ Contador de usuários seguidos
@@ -23,6 +25,7 @@ Sistema completo de feed personalizado que mostra posts de usuários que você s
 - ✅ Loading state durante carregamento
 
 ### Navegação Global
+
 - ✅ Navbar com links para Explorar, Feed e Perfil
 - ✅ Highlight do link ativo
 - ✅ Responsivo mobile (esconde nav em telas pequenas)
@@ -59,14 +62,16 @@ src/
 ## 📊 Fluxo de Dados
 
 ### 1. Usuário Autenticado Seguindo Pessoas
+
 ```
 GET /api/feed → Verifica auth → Busca followings → Retorna posts recentes
                                                    ↓
-                                             {type: "following", 
+                                             {type: "following",
                                               followingCount: N}
 ```
 
 ### 2. Usuário Autenticado Não Seguindo Ninguém
+
 ```
 GET /api/feed → Verifica auth → followings.length === 0 → Posts populares
                                                           ↓
@@ -75,6 +80,7 @@ GET /api/feed → Verifica auth → followings.length === 0 → Posts populares
 ```
 
 ### 3. Usuário Não Autenticado
+
 ```
 GET /api/feed → Sem auth → Posts populares (top 20)
                           ↓
@@ -86,6 +92,7 @@ GET /api/feed → Sem auth → Posts populares (top 20)
 ### Prioridades
 
 1. **Following Feed (Preferencial)**
+
    - Usuário autenticado + segue >= 1 pessoa
    - Mostra até 50 posts mais recentes
    - Ordenação: `createdAt DESC`
@@ -111,13 +118,15 @@ GET /api/feed → Sem auth → Posts populares (top 20)
 ### Navbar Component
 
 **Props:**
+
 ```typescript
 interface NavbarProps {
-  onSearch?: (query: string) => void;  // Opcional para páginas com busca
+  onSearch?: (query: string) => void; // Opcional para páginas com busca
 }
 ```
 
 **Features:**
+
 - Logo clicável para home
 - Links de navegação (Home, Feed, Perfil)
 - Barra de busca (se onSearch fornecido)
@@ -126,6 +135,7 @@ interface NavbarProps {
 - Sticky top com backdrop blur
 
 **Uso:**
+
 ```tsx
 // Com busca (home)
 <Navbar onSearch={setSearchQuery} />
@@ -137,12 +147,14 @@ interface NavbarProps {
 ### Feed Page Component
 
 **Estados:**
+
 - `posts` - Array de posts do feed
 - `isLoading` - Loading state
 - `feedType` - "following" ou "popular"
 - `followingCount` - Número de pessoas seguidas
 
 **Views:**
+
 1. **Loading:** Spinner centralizado
 2. **Not Authenticated:** CTA para login
 3. **Empty State:** Sem posts + botão explorar
@@ -153,11 +165,13 @@ interface NavbarProps {
 ### Indicadores Visuais
 
 **Feed Following:**
+
 ```tsx
 <Users icon /> Posts de N pessoas que você segue
 ```
 
 **Feed Popular:**
+
 ```tsx
 <TrendingUp icon /> Posts populares
 ```
@@ -165,14 +179,17 @@ interface NavbarProps {
 ### Estados Vazios
 
 **Following Vazio:**
+
 > "As pessoas que você segue ainda não publicaram nada"
 > [Botão: Explorar Posts]
 
 **Não Segue Ninguém:**
+
 > "Comece seguindo pessoas para ver posts personalizados!"
 > [Botão: Explorar Posts]
 
 **Não Autenticado:**
+
 > "Faça login para ver posts de pessoas que você segue"
 > [Botão: Fazer Login]
 
@@ -181,6 +198,7 @@ interface NavbarProps {
 ### Como Desenvolvedor
 
 **Adicionar feed em nova página:**
+
 ```tsx
 import { Navbar } from "@/components/Navbar";
 
@@ -188,15 +206,14 @@ export default function MyPage() {
   return (
     <>
       <Navbar />
-      <main>
-        {/* Seu conteúdo */}
-      </main>
+      <main>{/* Seu conteúdo */}</main>
     </>
   );
 }
 ```
 
 **Verificar tipo de feed via API:**
+
 ```bash
 # Sem auth → popular
 curl http://localhost:3000/api/feed
@@ -216,10 +233,12 @@ curl http://localhost:3000/api/feed \
 ### Como Usuário
 
 1. **Acessar Feed**
+
    - Clicar em "Feed" na navbar
    - Ou acessar `/feed` diretamente
 
 2. **Ver Posts Following**
+
    - Precisa estar logado
    - Precisa seguir pelo menos 1 pessoa
    - Vê posts em ordem cronológica
@@ -265,6 +284,7 @@ npm run build
 ### Queries Principais
 
 **Following Feed:**
+
 ```prisma
 // 1. Buscar quem você segue
 follows.findMany({
@@ -281,6 +301,7 @@ posts.findMany({
 ```
 
 **Popular Feed:**
+
 ```prisma
 posts.findMany({
   orderBy: [
@@ -294,30 +315,35 @@ posts.findMany({
 ## 🎯 Melhorias Futuras
 
 ### Performance
+
 - [ ] Cache de feed por usuário (Redis)
 - [ ] Paginação infinita com cursor
 - [ ] Prefetch de imagens
 - [ ] Virtual scrolling para feeds longos
 
 ### Features
+
 - [ ] Filtros no feed (por tag, modelo, data)
 - [ ] Ordenação customizável (recente, popular, relevante)
 - [ ] "Você perdeu" - resumo de posts enquanto offline
 - [ ] Stories/destaques no topo do feed
 
 ### Algoritmo
+
 - [ ] Feed com relevância (não só cronológico)
 - [ ] Boost de posts com engajamento recente
 - [ ] Penalizar repost/duplicatas
 - [ ] Diversidade de autores
 
 ### Social
+
 - [ ] Compartilhar post no feed
 - [ ] Salvar post para ler depois
 - [ ] Ocultar posts/usuários
 - [ ] Reportar conteúdo inadequado
 
 ### Analytics
+
 - [ ] Impressões por post no feed
 - [ ] Taxa de clique (CTR)
 - [ ] Tempo de visualização
@@ -328,6 +354,7 @@ posts.findMany({
 ### PromptCard Interface
 
 **Antes:**
+
 ```typescript
 interface PromptCardProps {
   prompt: Prompt;
@@ -335,13 +362,14 @@ interface PromptCardProps {
 ```
 
 **Depois:**
+
 ```typescript
 export interface PromptCardProps extends Prompt {
   onLike?: (id: string, newCount: number) => void;
 }
 
 // Permite spread operator
-<PromptCard {...promptData} />
+<PromptCard {...promptData} />;
 ```
 
 ### Navbar Active Link Detection
@@ -356,33 +384,39 @@ const isActive = (path: string) => pathname === path;
 ### Conditional Search Bar
 
 ```typescript
-{onSearch && (
-  <div className="flex-1 flex justify-center max-w-2xl">
-    <SearchBar onSearch={onSearch} />
-  </div>
-)}
+{
+  onSearch && (
+    <div className="flex-1 flex justify-center max-w-2xl">
+      <SearchBar onSearch={onSearch} />
+    </div>
+  );
+}
 ```
 
 ## ✨ Características Especiais
 
 ### SEO
+
 - Metadata dedicada para `/feed`
 - Title: "Feed Personalizado | PromptShare"
 - Description otimizada para busca
 
 ### Acessibilidade
+
 - Ícones com labels semânticos
 - Loading states com spinner visível
 - Links com hover states claros
 - Keyboard navigation completa
 
 ### Performance
+
 - Static generation para layout
 - Server-side data fetching na API
 - Client-side rendering apenas onde necessário
 - Otimização de imagens com Next.js Image
 
 ### Mobile
+
 - Navegação responsiva
 - Grid adaptativo (1 col mobile → 3 cols desktop)
 - Touch-friendly buttons
@@ -393,6 +427,7 @@ const isActive = (path: string) => pathname === path;
 **Status:** ✅ Feed personalizado 100% funcional!
 
 **Integrado com:**
+
 - ✅ Sistema de follow/unfollow
 - ✅ Autenticação NextAuth
 - ✅ Navbar global
@@ -400,6 +435,7 @@ const isActive = (path: string) => pathname === path;
 - ✅ API de posts
 
 **Próximos Passos Sugeridos:**
+
 - 🔔 Sistema de notificações
 - ✏️ Editar perfil
 - 📷 Upload de imagens (Supabase Storage)
