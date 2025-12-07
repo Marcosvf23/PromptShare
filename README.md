@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PromptShare
 
-## Getting Started
+Uma comunidade para compartilhar prompts de imagens geradas por IA.
 
-First, run the development server:
+## 🚀 Características
+
+- ✨ Interface moderna e responsiva
+- 🖼️ Upload e compartilhamento de imagens com prompts
+- 🔍 Busca por título, prompt ou tags
+- ❤️ Sistema de likes
+- 📋 Copiar prompts com um clique
+- 🏷️ Organização por tags
+
+## 🛠️ Tecnologias
+
+- **Next.js 15** - Framework React
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Estilização
+- **shadcn/ui** - Componentes UI
+- **Lucide React** - Ícones
+
+## 📦 Instalação
+
+```bash
+npm install
+```
+
+## 🏃 Executar o projeto
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📝 Como usar
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Explorar prompts**: Navegue pela galeria de prompts compartilhados pela comunidade
+2. **Buscar**: Use a barra de pesquisa para encontrar prompts específicos
+3. **Compartilhar**: Clique em "Compartilhar Prompt" para adicionar sua imagem e prompt
+4. **Copiar**: Clique em "Copiar Prompt" em qualquer card para usar o prompt
+5. **Curtir**: Demonstre apreciação clicando no ❤️
 
-## Learn More
+## 🎨 Estrutura do Projeto
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── page.tsx          # Página principal
+│   └── globals.css       # Estilos globais
+├── components/
+│   ├── PromptCard.tsx    # Card de exibição de prompt
+│   ├── UploadDialog.tsx  # Dialog para upload
+│   ├── SearchBar.tsx     # Barra de busca
+│   └── ui/               # Componentes shadcn/ui
+└── types/
+    └── index.ts          # Tipos TypeScript
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔮 Próximas Funcionalidades
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [ ] Autenticação de usuários
+- [ ] Persistência de dados (banco de dados)
+- [ ] Filtros avançados por categoria
+- [ ] Perfis de usuário
+- [ ] Comentários em prompts
+- [ ] Sistema de favoritos
+- [ ] Upload real de imagens para cloud storage
 
-## Deploy on Vercel
+## 📄 Licença
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

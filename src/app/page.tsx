@@ -1,65 +1,171 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useMemo } from "react";
+import { PromptCard } from "@/components/PromptCard";
+import { UploadDialog } from "@/components/UploadDialog";
+import { SearchBar } from "@/components/SearchBar";
+import { Prompt } from "@/types";
+import { Sparkles } from "lucide-react";
+
+// Dados de exemplo
+const mockPrompts: Prompt[] = [
+  {
+    id: "1",
+    title: "Paisagem Cyberpunk Futurista",
+    prompt:
+      "A futuristic cyberpunk cityscape at night, neon lights reflecting on wet streets, flying cars, towering skyscrapers, detailed, 8k, photorealistic",
+    imageUrl:
+      "https://images.unsplash.com/photo-1618172193622-ae2d025f4032?w=800&auto=format&fit=crop",
+    author: {
+      name: "João Silva",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=joao",
+    },
+    likes: 142,
+    createdAt: new Date("2024-01-15"),
+    tags: ["cyberpunk", "futurista", "cidade"],
+  },
+  {
+    id: "2",
+    title: "Retrato Artístico de Fantasia",
+    prompt:
+      "Portrait of a mystical elven warrior, long flowing hair, intricate armor with glowing runes, fantasy art style, highly detailed, dramatic lighting",
+    imageUrl:
+      "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&auto=format&fit=crop",
+    author: {
+      name: "Maria Costa",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=maria",
+    },
+    likes: 98,
+    createdAt: new Date("2024-01-14"),
+    tags: ["fantasia", "retrato", "guerreiro"],
+  },
+  {
+    id: "3",
+    title: "Paisagem Natural Serena",
+    prompt:
+      "Beautiful mountain landscape at sunrise, misty valleys, golden hour lighting, peaceful lake reflection, ultra realistic, cinematic composition",
+    imageUrl:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop",
+    author: {
+      name: "Pedro Santos",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=pedro",
+    },
+    likes: 215,
+    createdAt: new Date("2024-01-13"),
+    tags: ["natureza", "paisagem", "montanhas"],
+  },
+  {
+    id: "4",
+    title: "Arte Abstrata Colorida",
+    prompt:
+      "Abstract digital art, vibrant colors, flowing shapes, geometric patterns, modern art style, 4k resolution, high contrast",
+    imageUrl:
+      "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&auto=format&fit=crop",
+    author: {
+      name: "Ana Oliveira",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=ana",
+    },
+    likes: 76,
+    createdAt: new Date("2024-01-12"),
+    tags: ["abstrato", "colorido", "digital"],
+  },
+];
 
 export default function Home() {
+  const [prompts, setPrompts] = useState<Prompt[]>(mockPrompts);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredPrompts = useMemo(() => {
+    if (!searchQuery) return prompts;
+
+    const query = searchQuery.toLowerCase();
+    return prompts.filter(
+      (prompt) =>
+        prompt.title.toLowerCase().includes(query) ||
+        prompt.prompt.toLowerCase().includes(query) ||
+        prompt.tags.some((tag) => tag.toLowerCase().includes(query))
+    );
+  }, [prompts, searchQuery]);
+
+  const handleNewPrompt = (data: {
+    title: string;
+    prompt: string;
+    imageUrl: string;
+    tags: string[];
+  }) => {
+    const newPrompt: Prompt = {
+      id: Date.now().toString(),
+      ...data,
+      author: {
+        name: "Você",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=user",
+      },
+      likes: 0,
+      createdAt: new Date(),
+    };
+    setPrompts([newPrompt, ...prompts]);
+  };
+
+  const handleLike = (id: string) => {
+    setPrompts(
+      prompts.map((prompt) =>
+        prompt.id === id ? { ...prompt, likes: prompt.likes + 1 } : prompt
+      )
+    );
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 z-10">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-6 w-6 text-primary" />
+              <h1 className="text-2xl font-bold">PromptShare</h1>
+            </div>
+            <div className="flex-1 flex justify-center max-w-2xl">
+              <SearchBar onSearch={setSearchQuery} />
+            </div>
+            <UploadDialog onSubmit={handleNewPrompt} />
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold mb-2">
+            Explore Prompts da Comunidade
+          </h2>
+          <p className="text-muted-foreground">
+            Descubra e compartilhe prompts incríveis para suas criações com IA
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        {filteredPrompts.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">
+              Nenhum prompt encontrado. Tente outra busca!
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredPrompts.map((prompt) => (
+              <PromptCard key={prompt.id} prompt={prompt} onLike={handleLike} />
+            ))}
+          </div>
+        )}
       </main>
+
+      {/* Footer */}
+      <footer className="border-t mt-12">
+        <div className="container mx-auto px-4 py-6">
+          <p className="text-center text-sm text-muted-foreground">
+            © 2024 PromptShare - Comunidade de Prompts de IA
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
