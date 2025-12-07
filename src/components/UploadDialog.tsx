@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -21,6 +22,7 @@ interface UploadDialogProps {
 }
 
 export function UploadDialog({ onSubmit }: UploadDialogProps) {
+  const { data: session } = useSession();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [prompt, setPrompt] = useState("");
@@ -43,6 +45,11 @@ export function UploadDialog({ onSubmit }: UploadDialogProps) {
   };
 
   const handleSubmit = async () => {
+    if (!session?.user?.id) {
+      setError("Você precisa estar logado para fazer upload");
+      return;
+    }
+
     if (!title || !prompt || !imagePreview) {
       setError("Por favor, preencha todos os campos obrigatórios");
       return;
@@ -66,7 +73,7 @@ export function UploadDialog({ onSubmit }: UploadDialogProps) {
             .split(",")
             .map((tag) => tag.trim())
             .filter(Boolean),
-          userId: "demo-user-id", // Em produção, viria da sessão
+          userId: session.user.id,
         }),
       });
 

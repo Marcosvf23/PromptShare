@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import {
   Card,
@@ -20,6 +21,7 @@ interface PromptCardProps {
 }
 
 export function PromptCard({ prompt, onLike }: PromptCardProps) {
+  const { data: session } = useSession();
   const [copied, setCopied] = useState(false);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(prompt.likes);
@@ -32,10 +34,9 @@ export function PromptCard({ prompt, onLike }: PromptCardProps) {
   };
 
   const handleLike = async () => {
-    if (isLiking) return;
+    if (isLiking || !session?.user?.id) return;
 
-    // Para demo, usar um userId fixo (em produção, viria da sessão)
-    const userId = "demo-user-id";
+    const userId = session.user.id;
 
     setIsLiking(true);
     const previousLiked = liked;

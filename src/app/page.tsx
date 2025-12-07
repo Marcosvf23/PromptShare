@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import { PromptCard } from "@/components/PromptCard";
 import { UploadDialog } from "@/components/UploadDialog";
 import { SearchBar } from "@/components/SearchBar";
+import { AuthButtons } from "@/components/AuthButtons";
 import { Prompt } from "@/types";
 import { Sparkles, Loader2, AlertCircle } from "lucide-react";
 
@@ -79,7 +80,10 @@ export default function Home() {
             <div className="flex-1 flex justify-center max-w-2xl">
               <SearchBar onSearch={setSearchQuery} />
             </div>
-            <UploadDialog />
+            <div className="flex items-center gap-2">
+              <UploadDialog />
+              <AuthButtons />
+            </div>
           </div>
         </div>
       </header>
