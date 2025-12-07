@@ -3,6 +3,7 @@
 ## 🌟 Design e Interface
 
 ### Tema
+
 - **Estilo**: Moderno e minimalista
 - **Cores**: Sistema de cores neutro com acentos
 - **Tipografia**: Geist Sans (clean e legível)
@@ -60,10 +61,10 @@ Cada card de prompt contém:
 ### Interações do Card
 
 1. **Hover**: Sombra aumenta (efeito de elevação)
-2. **Botão Like**: 
+2. **Botão Like**:
    - Inativo: Ícone vazio
    - Ativo: Ícone preenchido + vermelho
-3. **Botão Copiar**: 
+3. **Botão Copiar**:
    - Normal: "Copiar Prompt"
    - Copiado: "Copiado!" com ícone de check (2s)
 
@@ -100,10 +101,12 @@ Cada card de prompt contém:
 ## 🎯 Estados de Interação
 
 ### Loading States
+
 - Cards podem ter skeleton loaders
 - Botões mostram spinner quando processando
 
 ### Empty States
+
 ```
 ┌─────────────────────────────────┐
 │                                 │
@@ -116,6 +119,7 @@ Cada card de prompt contém:
 ```
 
 ### Success States
+
 - Notificação ao copiar prompt
 - Feedback visual ao curtir
 - Confirmação ao publicar
@@ -123,19 +127,23 @@ Cada card de prompt contém:
 ## 📱 Breakpoints Responsivos
 
 ### Mobile (< 640px)
+
 - 1 coluna de cards
 - Header empilhado verticalmente
 - Busca em largura total
 
 ### Tablet (640px - 1024px)
+
 - 2 colunas de cards
 - Header com busca centralizada
 
 ### Desktop (1024px - 1280px)
+
 - 3 colunas de cards
 - Layout completo
 
 ### Large Desktop (> 1280px)
+
 - 4 colunas de cards
 - Máxima utilização do espaço
 
@@ -166,16 +174,19 @@ Border:          rgba(255,255,255,0.1) (bordas sutis)
 ## ✨ Animações e Transições
 
 ### Hover Effects
+
 - Cards: `transition-shadow duration-300`
 - Botões: `transition-colors duration-200`
 - Imagens: Efeito de zoom suave
 
 ### Click Feedback
+
 - Ripple effect nos botões
 - Mudança de cor instantânea
 - Escala ligeira no press
 
 ### Page Transitions
+
 - Fade in ao carregar
 - Smooth scroll
 - Animações de entrada dos cards
@@ -183,30 +194,36 @@ Border:          rgba(255,255,255,0.1) (bordas sutis)
 ## 🔍 Acessibilidade
 
 ### Keyboard Navigation
+
 - Tab: Navegar entre elementos
 - Enter: Ativar botões/links
 - Esc: Fechar dialogs
 
 ### Screen Readers
+
 - Alt text em todas as imagens
 - Labels descritivos
 - ARIA attributes apropriados
 
 ### Contrast
+
 - Ratios WCAG AA compliant
 - Textos legíveis em ambos os temas
 
 ## 💫 Micro-interações
 
 1. **Like Button**
+
    - Animação de "pulso" ao curtir
    - Contador incrementa com fade
 
 2. **Copy Button**
+
    - Mudança de ícone com transição
    - Tooltip com feedback
 
 3. **Search Bar**
+
    - Ícone de busca animado
    - Clear button aparece quando há texto
 
@@ -217,6 +234,7 @@ Border:          rgba(255,255,255,0.1) (bordas sutis)
 ## 🎭 Componentes Reutilizáveis
 
 Todos os componentes UI são do shadcn/ui, customizáveis via:
+
 - `src/components/ui/` - Componentes base
 - `src/app/globals.css` - Variáveis de tema
 - Tailwind classes - Estilização inline

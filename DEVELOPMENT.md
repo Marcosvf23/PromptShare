@@ -7,6 +7,7 @@ Este é um site de comunidade onde usuários podem compartilhar imagens geradas 
 ## 🏗️ Arquitetura Atual
 
 ### Frontend (Atual)
+
 - **Framework**: Next.js 15 com App Router
 - **Linguagem**: TypeScript
 - **Estilização**: Tailwind CSS + shadcn/ui
@@ -25,17 +26,20 @@ Este é um site de comunidade onde usuários podem compartilhar imagens geradas 
 ### Fase 1: Autenticação e Backend (Recomendado)
 
 #### Opção A: Supabase (Mais Rápido)
+
 ```bash
 npm install @supabase/supabase-js @supabase/auth-helpers-nextjs
 ```
 
 **Recursos**:
+
 - Autenticação integrada (Google, GitHub, Email)
 - Banco de dados PostgreSQL
 - Storage para imagens
 - Realtime subscriptions
 
 **Estrutura de Tabelas**:
+
 ```sql
 -- Users (gerenciado pelo Supabase Auth)
 
@@ -73,6 +77,7 @@ CREATE TABLE likes (
 ```
 
 #### Opção B: Next.js + Prisma + PostgreSQL
+
 ```bash
 npm install @prisma/client
 npm install -D prisma
@@ -80,6 +85,7 @@ npx prisma init
 ```
 
 #### Opção C: Firebase (Alternativa)
+
 - Boa documentação
 - Realtime database
 - Storage integrado
@@ -87,36 +93,43 @@ npx prisma init
 ### Fase 2: Upload de Imagens Real
 
 #### Opção A: Cloudinary (Recomendado)
+
 ```bash
 npm install cloudinary next-cloudinary
 ```
 
 #### Opção B: AWS S3
+
 ```bash
 npm install @aws-sdk/client-s3
 ```
 
 #### Opção C: Supabase Storage (se usar Supabase)
+
 - Já incluído no Supabase
 
 ### Fase 3: Funcionalidades Avançadas
 
 1. **Sistema de Perfis**
+
    - Página de perfil do usuário
    - Histórico de prompts publicados
    - Estatísticas (views, likes totais)
 
 2. **Sistema de Comentários**
+
    - Comentários em prompts
    - Respostas aninhadas
    - Notificações
 
 3. **Categorias e Filtros**
+
    - Filtrar por categoria (Paisagem, Retrato, Abstrato, etc.)
    - Filtrar por estilo (Realista, Cartoon, Anime, etc.)
    - Ordenação (Mais recentes, Mais curtidos, Trending)
 
 4. **Sistema de Favoritos**
+
    - Salvar prompts favoritos
    - Criar coleções personalizadas
 
@@ -128,6 +141,7 @@ npm install @aws-sdk/client-s3
 ### Fase 4: Melhorias de Performance
 
 1. **Otimizações**
+
    - Lazy loading de imagens
    - Infinite scroll
    - Cache de dados
@@ -168,7 +182,7 @@ src/
 
 ## 🔧 Configurações Importantes
 
-### Variáveis de Ambiente (.env.local)
+### Variáveis de Ambiente (.env)
 
 ```env
 # Database (Supabase example)
@@ -193,11 +207,13 @@ GOOGLE_CLIENT_SECRET=your-google-client-secret
 ## 🛡️ Segurança
 
 1. **Validação de Inputs**
+
    - Usar Zod para validação de schemas
    - Sanitizar HTML em comentários
    - Limitar tamanho de upload
 
 2. **Rate Limiting**
+
    - Limitar uploads por usuário
    - Proteger APIs contra spam
 
@@ -218,12 +234,14 @@ npm install @vercel/analytics
 ## 🚀 Deploy
 
 ### Vercel (Recomendado para Next.js)
+
 ```bash
 npm install -g vercel
 vercel
 ```
 
 ### Outras Opções
+
 - Netlify
 - AWS Amplify
 - Railway
@@ -240,6 +258,7 @@ vercel
 ## 🤝 Contribuindo
 
 Para adicionar novas funcionalidades:
+
 1. Criar uma branch feature
 2. Implementar e testar localmente
 3. Fazer commit com mensagens descritivas

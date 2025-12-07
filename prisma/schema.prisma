@@ -1,0 +1,168 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String?  @unique
+  name      String?
+  avatarUrl String?
+  bio       String?  @db.Text
+  
+  posts     Post[]
+  likes     Like[]
+  comments  Comment[]
+  followers Follows[] @relation("following")
+  following Follows[] @relation("follower")
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([username])
+  @@index([email])
+}
+
+model Post {
+  id             String   @id @default(cuid())
+  title          String
+  prompt         String   @db.Text
+  negativePrompt String?  @db.Text
+  imageUrl       String
+  thumbnailUrl   String?  // Versão otimizada para listagens
+  width          Int?
+  height         Int?
+  model          String?  // Ex: "Midjourney v6", "Stable Diffusion XL"
+  steps          Int?     // Número de steps usado
+  seed           String?  // Seed para reprodução
+  cfgScale       Float?   // CFG Scale
+  sampler        String?  // Sampler usado
+  
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  tags           PostTag[]
+  likes          Like[]
+  comments       Comment[]
+  
+  viewCount      Int      @default(0)
+  likeCount      Int      @default(0)
+  commentCount   Int      @default(0)
+  
+  published      Boolean  @default(true)
+  featured       Boolean  @default(false) // Para destacar posts na home
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([createdAt])
+  @@index([likeCount])
+  @@index([featured])
+}
+
+model Tag {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  postCount Int       @default(0)
+  posts     PostTag[]
+  
+  createdAt DateTime  @default(now())
+  
+  @@index([slug])
+  @@index([postCount])
+}
+
+model PostTag {
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId  String
+  
+  @@id([postId, tagId])
+  @@index([postId])
+  @@index([tagId])
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  
+  @@unique([userId, postId]) // Um usuário só pode curtir uma vez
+  @@index([userId])
+  @@index([postId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  
+  parentId  String?  // Para respostas aninhadas
+  parent    Comment? @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   Comment[] @relation("CommentReplies")
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([postId])
+  @@index([parentId])
+  @@index([createdAt])
+}
+
+model Follows {
+  follower    User   @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followerId  String
+  following   User   @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+  followingId String
+  
+  createdAt   DateTime @default(now())
+  
+  @@id([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+}
+
+model Collection {
+  id          String   @id @default(cuid())
+  name        String
+  description String?  @db.Text
+  isPublic    Boolean  @default(true)
+  
+  userId      String
+  posts       CollectionPost[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([userId])
+}
+
+model CollectionPost {
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collectionId String
+  postId       String
+  
+  addedAt      DateTime   @default(now())
+  
+  @@id([collectionId, postId])
+  @@index([collectionId])
+  @@index([postId])
+}
