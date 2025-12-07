@@ -11,17 +11,19 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Heart, Copy, Check } from "lucide-react";
+import { Heart, Copy, Check, Loader2 } from "lucide-react";
 import { Prompt } from "@/types";
 
 interface PromptCardProps {
   prompt: Prompt;
-  onLike: (id: string) => void;
+  onLike?: (id: string, newCount: number) => void;
 }
 
 export function PromptCard({ prompt, onLike }: PromptCardProps) {
   const [copied, setCopied] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(prompt.likes);
+  const [isLiking, setIsLiking] = useState(false);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(prompt.prompt);
@@ -29,9 +31,49 @@ export function PromptCard({ prompt, onLike }: PromptCardProps) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleLike = () => {
+  const handleLike = async () => {
+    if (isLiking) return;
+
+    // Para demo, usar um userId fixo (em produção, viria da sessão)
+    const userId = "demo-user-id";
+
+    setIsLiking(true);
+    const previousLiked = liked;
+    const previousCount = likeCount;
+
+    // Atualização otimista
     setLiked(!liked);
-    onLike(prompt.id);
+    setLikeCount(liked ? likeCount - 1 : likeCount + 1);
+
+    try {
+      const response = await fetch(`/api/posts/${prompt.id}/like`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Falha ao processar like");
+      }
+
+      const data = await response.json();
+      setLiked(data.liked);
+      setLikeCount(data.likeCount);
+
+      // Notificar componente pai se callback fornecido
+      if (onLike) {
+        onLike(prompt.id, data.likeCount);
+      }
+    } catch (error) {
+      console.error("Erro ao dar like:", error);
+      // Reverter em caso de erro
+      setLiked(previousLiked);
+      setLikeCount(previousCount);
+    } finally {
+      setIsLiking(false);
+    }
   };
 
   return (
@@ -71,10 +113,15 @@ export function PromptCard({ prompt, onLike }: PromptCardProps) {
           variant="ghost"
           size="sm"
           onClick={handleLike}
+          disabled={isLiking}
           className={liked ? "text-red-500" : ""}
         >
-          <Heart className={`h-4 w-4 mr-1 ${liked ? "fill-current" : ""}`} />
-          {prompt.likes + (liked ? 1 : 0)}
+          {isLiking ? (
+            <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+          ) : (
+            <Heart className={`h-4 w-4 mr-1 ${liked ? "fill-current" : ""}`} />
+          )}
+          {likeCount}
         </Button>
         <Button variant="outline" size="sm" onClick={handleCopy}>
           {copied ? (

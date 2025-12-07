@@ -3,6 +3,7 @@
 ## ✅ Completed Features
 
 ### 1. Frontend (Next.js 16 + TypeScript)
+
 - ✅ **Homepage** with responsive gallery grid (1-4 columns)
 - ✅ **PromptCard Component** - Display posts with image, title, author, likes, tags
 - ✅ **UploadDialog Component** - Modal for creating new prompts
@@ -13,13 +14,16 @@
 - ✅ **Animations** with tw-animate-css
 
 ### 2. Database (Supabase + Prisma 7)
+
 - ✅ **PostgreSQL Database** hosted on Supabase
+
   - Project ID: `juuiyyszdspsyiquosjh`
   - Region: `aws-1-us-east-2`
   - Direct Connection: Port 5432
   - Pooler Connection: Port 6543
 
 - ✅ **Prisma 7 ORM Configuration**
+
   - ✅ `prisma.config.ts` in project root
   - ✅ Database adapter with `@prisma/adapter-pg`
   - ✅ PostgreSQL driver (`pg` package)
@@ -27,6 +31,7 @@
   - ✅ Seed system configured
 
 - ✅ **Database Schema** (9 tables)
+
   1. **User** - User accounts
   2. **Post** - AI-generated images with prompts
   3. **Tag** - Categorization tags
@@ -38,6 +43,7 @@
   9. **CollectionPost** - N:M relationship (Collections ↔ Posts)
 
 - ✅ **Migrations Applied**
+
   - Initial migration: `20251207050858_init`
   - All tables created in production database
   - Indexes optimized for queries
@@ -51,6 +57,7 @@
   - 2 follow relationships
 
 ### 3. API Routes
+
 - ✅ **GET /api/posts** - Fetch all posts with:
   - User information
   - Tags
@@ -59,6 +66,7 @@
   - Sorted by creation date (newest first)
 
 ### 4. Documentation
+
 - ✅ `DATABASE_SETUP.md` - Complete database setup guide
 - ✅ `DATABASE_SCHEMA.md` - Schema diagrams and example queries
 - ✅ `ENV_SETUP.md` - Environment variables configuration
@@ -68,6 +76,7 @@
 ## 🔧 Configuration Files
 
 ### Environment Variables (`.env`)
+
 ```env
 # Database (Supabase)
 DATABASE_URL=postgresql://postgres.juuiyyszdspsyiquosjh:fbDkU2knaMOsXYmI@aws-1-us-east-2.pooler.supabase.com:6543/postgres
@@ -84,6 +93,7 @@ NEXTAUTH_SECRET=<generated-secret>
 ```
 
 ### Prisma Configuration (`prisma.config.ts`)
+
 ```typescript
 import { defineConfig, env } from "prisma/config";
 
@@ -102,6 +112,7 @@ export default defineConfig({
 ## 🧪 Testing & Verification
 
 ### ✅ Verified Working
+
 1. **Database Connection** - Prisma successfully connects to Supabase
 2. **Migrations** - Tables created without errors
 3. **Seed Data** - 3 posts, 3 users, 10 tags, likes, and comments inserted
@@ -110,6 +121,7 @@ export default defineConfig({
 6. **Development Server** - Running at `http://localhost:3000`
 
 ### Test Commands
+
 ```bash
 # Check migration status
 npx prisma migrate status
@@ -158,12 +170,15 @@ img-prompts/
 ## 🚀 Next Steps (Priority Order)
 
 ### High Priority
+
 1. **Update Homepage to use real API data**
+
    - Replace mock data with fetch from `/api/posts`
    - Add loading states
    - Add error handling
 
 2. **Implement Authentication (NextAuth.js)**
+
    - Configure providers (Google, GitHub, Email)
    - Add login/signup pages
    - Protect upload functionality
@@ -178,13 +193,16 @@ img-prompts/
    - `GET /api/users/[id]` - User profile
 
 ### Medium Priority
+
 4. **Image Upload Integration**
+
    - Configure Supabase Storage
    - Implement image upload in UploadDialog
    - Add image optimization (thumbnails)
    - Handle upload progress
 
 5. **User Profile Pages**
+
    - `/users/[username]` - Profile page
    - Display user's posts
    - Show followers/following
@@ -197,6 +215,7 @@ img-prompts/
    - Search by prompt text
 
 ### Low Priority
+
 7. **Additional Features**
    - Collections system
    - Bookmark posts
@@ -208,6 +227,7 @@ img-prompts/
 ## 🐛 Known Issues
 
 ### Resolved
+
 - ✅ Prisma 7 adapter configuration (was using wrong datasource format)
 - ✅ Environment variables not loading in seed (fixed with dotenv)
 - ✅ Database connection pooling issues (configured max connections)
@@ -218,6 +238,7 @@ img-prompts/
 ## 📦 Dependencies
 
 ### Production
+
 - next@16.0.7
 - react@19.0.0
 - @prisma/client@7.1.0
@@ -226,6 +247,7 @@ img-prompts/
 - lucide-react@0.468.0
 
 ### Development
+
 - typescript@5.9.3
 - prisma@7.1.0
 - @types/pg@8.11.10
@@ -247,12 +269,14 @@ img-prompts/
 ## 📝 Notes
 
 1. **Prisma 7 Specifics**:
+
    - Requires `prisma.config.ts` in project root (not in prisma folder)
    - Must use `env()` function or process.env in config
    - Datasource URL moved from schema.prisma to prisma.config.ts
    - Requires database adapter (@prisma/adapter-pg for PostgreSQL)
 
 2. **Supabase Configuration**:
+
    - Always use DIRECT_URL (port 5432) for migrations
    - Use DATABASE_URL (port 6543) for application queries (pooler)
    - SSL required: `{ rejectUnauthorized: false }`

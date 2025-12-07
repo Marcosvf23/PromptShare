@@ -1,79 +1,58 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { PromptCard } from "@/components/PromptCard";
 import { UploadDialog } from "@/components/UploadDialog";
 import { SearchBar } from "@/components/SearchBar";
 import { Prompt } from "@/types";
-import { Sparkles } from "lucide-react";
-
-// Dados de exemplo
-const mockPrompts: Prompt[] = [
-  {
-    id: "1",
-    title: "Paisagem Cyberpunk Futurista",
-    prompt:
-      "A futuristic cyberpunk cityscape at night, neon lights reflecting on wet streets, flying cars, towering skyscrapers, detailed, 8k, photorealistic",
-    imageUrl:
-      "https://images.unsplash.com/photo-1618172193622-ae2d025f4032?w=800&auto=format&fit=crop",
-    author: {
-      name: "João Silva",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=joao",
-    },
-    likes: 142,
-    createdAt: new Date("2024-01-15"),
-    tags: ["cyberpunk", "futurista", "cidade"],
-  },
-  {
-    id: "2",
-    title: "Retrato Artístico de Fantasia",
-    prompt:
-      "Portrait of a mystical elven warrior, long flowing hair, intricate armor with glowing runes, fantasy art style, highly detailed, dramatic lighting",
-    imageUrl:
-      "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&auto=format&fit=crop",
-    author: {
-      name: "Maria Costa",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=maria",
-    },
-    likes: 98,
-    createdAt: new Date("2024-01-14"),
-    tags: ["fantasia", "retrato", "guerreiro"],
-  },
-  {
-    id: "3",
-    title: "Paisagem Natural Serena",
-    prompt:
-      "Beautiful mountain landscape at sunrise, misty valleys, golden hour lighting, peaceful lake reflection, ultra realistic, cinematic composition",
-    imageUrl:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop",
-    author: {
-      name: "Pedro Santos",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=pedro",
-    },
-    likes: 215,
-    createdAt: new Date("2024-01-13"),
-    tags: ["natureza", "paisagem", "montanhas"],
-  },
-  {
-    id: "4",
-    title: "Arte Abstrata Colorida",
-    prompt:
-      "Abstract digital art, vibrant colors, flowing shapes, geometric patterns, modern art style, 4k resolution, high contrast",
-    imageUrl:
-      "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&auto=format&fit=crop",
-    author: {
-      name: "Ana Oliveira",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=ana",
-    },
-    likes: 76,
-    createdAt: new Date("2024-01-12"),
-    tags: ["abstrato", "colorido", "digital"],
-  },
-];
+import { Sparkles, Loader2, AlertCircle } from "lucide-react";
 
 export default function Home() {
-  const [prompts, setPrompts] = useState<Prompt[]>(mockPrompts);
+  const [prompts, setPrompts] = useState<Prompt[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Buscar posts da API ao carregar a página
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const response = await fetch("/api/posts");
+        
+        if (!response.ok) {
+          throw new Error("Falha ao carregar os posts");
+        }
+        
+        const data = await response.json();
+        
+        // Transformar dados da API para o formato do frontend
+        const transformedPrompts: Prompt[] = data.map((post: any) => ({
+          id: post.id,
+          title: post.title,
+          prompt: post.prompt,
+          imageUrl: post.imageUrl || post.thumbnailUrl,
+          author: {
+            name: post.author.name,
+            avatar: post.author.avatarUrl,
+          },
+          likes: post.likes,
+          createdAt: new Date(post.createdAt),
+          tags: post.tags.map((tag: any) => tag.name),
+        }));
+        
+        setPrompts(transformedPrompts);
+      } catch (err) {
+        console.error("Erro ao buscar posts:", err);
+        setError("Não foi possível carregar os posts. Tente novamente mais tarde.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchPosts();
+  }, []);
 
   const filteredPrompts = useMemo(() => {
     if (!searchQuery) return prompts;
@@ -106,14 +85,6 @@ export default function Home() {
     setPrompts([newPrompt, ...prompts]);
   };
 
-  const handleLike = (id: string) => {
-    setPrompts(
-      prompts.map((prompt) =>
-        prompt.id === id ? { ...prompt, likes: prompt.likes + 1 } : prompt
-      )
-    );
-  };
-
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -143,16 +114,45 @@ export default function Home() {
           </p>
         </div>
 
-        {filteredPrompts.length === 0 ? (
+        {/* Loading State */}
+        {isLoading && (
+          <div className="flex flex-col items-center justify-center py-12">
+            <Loader2 className="h-8 w-8 animate-spin text-primary mb-4" />
+            <p className="text-muted-foreground">Carregando prompts...</p>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && !isLoading && (
+          <div className="flex flex-col items-center justify-center py-12">
+            <AlertCircle className="h-12 w-12 text-destructive mb-4" />
+            <p className="text-destructive font-medium mb-2">Erro ao carregar</p>
+            <p className="text-muted-foreground text-sm">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
+            >
+              Tentar novamente
+            </button>
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!isLoading && !error && filteredPrompts.length === 0 && (
           <div className="text-center py-12">
             <p className="text-muted-foreground">
-              Nenhum prompt encontrado. Tente outra busca!
+              {searchQuery
+                ? "Nenhum prompt encontrado. Tente outra busca!"
+                : "Nenhum prompt disponível ainda. Seja o primeiro a compartilhar!"}
             </p>
           </div>
-        ) : (
+        )}
+
+        {/* Posts Grid */}
+        {!isLoading && !error && filteredPrompts.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredPrompts.map((prompt) => (
-              <PromptCard key={prompt.id} prompt={prompt} onLike={handleLike} />
+              <PromptCard key={prompt.id} prompt={prompt} />
             ))}
           </div>
         )}
