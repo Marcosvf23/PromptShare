@@ -1,33 +1,56 @@
-# PromptShare 🎨
+# PromptShare ✨
 
 Uma plataforma de comunidade moderna para compartilhar e descobrir prompts de imagens geradas por IA.
 
-![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![Next.js](https://img.shields.io/badge/Next.js-16.0.7-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
-![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748)
+![Prisma](https://img.shields.io/badge/Prisma-7.1.0-2D3748)
 ![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-## ✨ Características
+## ✨ Características Implementadas
 
-- 🖼️ **Galeria de Prompts** - Explore imagens geradas por IA com seus prompts
-- 🔍 **Busca Avançada** - Encontre prompts por título, conteúdo ou tags
-- ❤️ **Sistema de Likes** - Curta seus prompts favoritos
-- 💬 **Comentários** - Discuta e aprenda com a comunidade
-- 🏷️ **Tags Inteligentes** - Organize e descubra por categorias
-- 👤 **Perfis de Usuário** - Acompanhe criadores favoritos
-- 📚 **Coleções** - Salve e organize seus prompts preferidos
-- 🎨 **Interface Moderna** - Design responsivo e elegante
+### 🔐 Autenticação e Usuários
+- ✅ **Autenticação Completa** - Login com email/senha e OAuth (Google, GitHub)
+- ✅ **Perfis de Usuário** - Perfis públicos com estatísticas e posts
+- ✅ **Sistema de Follow** - Siga outros usuários e veja suas atualizações
+- ✅ **Edição de Perfil** - Atualize nome, username, bio e avatar
+
+### 📰 Feed e Conteúdo
+- ✅ **Feed Personalizado** - Veja posts de pessoas que você segue
+- ✅ **Galeria de Prompts** - Explore todos os prompts da comunidade
+- ✅ **Busca em Tempo Real** - Encontre prompts por título, conteúdo ou tags
+- ✅ **Detalhes de Post** - Página dedicada com comentários e informações completas
+
+### 💬 Interações Sociais
+- ✅ **Sistema de Likes** - Curta seus prompts favoritos com atualização otimista
+- ✅ **Comentários** - Comente e interaja com a comunidade
+- ✅ **Seguidores** - Sistema completo de follow/unfollow
+- ✅ **Contadores em Tempo Real** - Likes, comentários, seguidores atualizados instantaneamente
+
+### 🎨 Interface e UX
+- ✅ **Design Moderno** - Interface clean com Tailwind CSS v4 + shadcn/ui
+- ✅ **Navegação Global** - Navbar com acesso rápido a Feed, Explorar e Perfil
+- ✅ **Responsivo** - Layout adaptativo para mobile, tablet e desktop
+- ✅ **Upload de Prompts** - Modal otimizada com scroll para prompts grandes
+- ✅ **Estados de Loading** - Feedback visual em todas as interações
+- ✅ **Otimistic Updates** - UI atualiza instantaneamente antes da confirmação do servidor
+
+### 🏷️ Organização
+- ✅ **Tags Inteligentes** - Sistema de tags para categorização
+- ✅ **Criação Automática** - Tags criadas automaticamente ao publicar
+- ✅ **Filtragem** - Busque por tags específicas
 
 ## 🛠️ Stack Tecnológico
 
-- **Frontend**: Next.js 15 (App Router) + TypeScript
-- **Estilização**: Tailwind CSS v4
-- **Componentes UI**: shadcn/ui
-- **Banco de Dados**: PostgreSQL (Supabase)
-- **ORM**: Prisma
-- **Autenticação**: NextAuth.js (em breve)
-- **Storage**: Supabase Storage
+- **Frontend**: Next.js 16.0.7 (App Router) + TypeScript 5
+- **Estilização**: Tailwind CSS v4 + shadcn/ui
+- **Autenticação**: NextAuth.js v5 (beta)
+- **Banco de Dados**: PostgreSQL via Supabase
+- **ORM**: Prisma 7.1.0
+- **Validação**: Zod
 - **Ícones**: Lucide React
+- **Deploy**: Vercel (recomendado)
 
 ## 🚀 Quick Start
 
@@ -139,38 +162,79 @@ PromptShare/
 
 Veja [DATABASE_SCHEMA.md](./DATABASE_SCHEMA.md) para detalhes completos.
 
-## 🚧 Roadmap
+## 🚀 Features Implementadas
 
-### Fase 1: Fundação ✅
+### ✅ Autenticação e Segurança
+- [x] NextAuth.js v5 com JWT sessions
+- [x] Login com credenciais (email + senha)
+- [x] OAuth providers prontos (Google, GitHub)
+- [x] Hash de senhas com bcryptjs
+- [x] Proteção de rotas e APIs
+- [x] Atualização de sessão em tempo real
 
-- [x] Setup inicial do projeto
-- [x] Componentes UI básicos
-- [x] Schema do banco de dados
-- [x] Documentação completa
+### ✅ Gestão de Perfis
+- [x] Perfis públicos com estatísticas
+- [x] Edição de perfil (nome, username, bio, avatar)
+- [x] Validações com Zod
+- [x] Username único com verificação
+- [x] Contador de posts/seguidores/seguindo
 
-### Fase 2: Backend (Em Andamento) 🚧
+### ✅ Sistema Social
+- [x] Follow/Unfollow com atualização otimista
+- [x] Feed personalizado (posts de quem você segue)
+- [x] Feed popular (fallback)
+- [x] Likes com contadores em tempo real
+- [x] Sistema de comentários
+- [x] Navegação entre perfis
 
-- [ ] Autenticação com NextAuth.js
-- [ ] APIs para CRUD de posts
-- [ ] Upload de imagens no Supabase Storage
-- [ ] Sistema de tags funcionando
-- [ ] Migrar para dados reais
+### ✅ Gestão de Conteúdo
+- [x] CRUD completo de posts
+- [x] Upload com preview de imagem
+- [x] Sistema de tags automático
+- [x] Busca em tempo real
+- [x] Página de detalhes do post
+- [x] Modal otimizada para prompts grandes
 
-### Fase 3: Features Sociais 📅
+### ✅ UX/UI
+- [x] Design responsivo (mobile-first)
+- [x] Navbar global com navegação
+- [x] Estados de loading e erro
+- [x] Feedback visual em todas ações
+- [x] Otimistic UI updates
+- [x] SEO otimizado
 
-- [ ] Sistema de perfis
-- [ ] Seguidores e feed personalizado
-- [ ] Comentários e respostas
-- [ ] Notificações
-- [ ] Coleções de prompts
+## 🎯 Próximas Features
 
-## 📚 Documentação
+### 📋 Em Planejamento
+- [ ] Sistema de notificações
+- [ ] Upload de imagens para Supabase Storage
+- [ ] Coleções de posts favoritos
+- [ ] Busca avançada com filtros
+- [ ] Mensagens diretas entre usuários
+- [ ] Analytics de perfil
+- [ ] Sistema de badges e conquistas
+- [ ] Dark mode
+- [ ] Exportação de prompts
+- [ ] API pública para desenvolvedores
 
-- [ENV_SETUP.md](./ENV_SETUP.md) - **Configuração do arquivo .env**
-- [DATABASE_SETUP.md](./DATABASE_SETUP.md) - Setup do banco de dados
-- [DATABASE_SCHEMA.md](./DATABASE_SCHEMA.md) - Diagramas e queries
+## 📚 Documentação Completa
+
+### 📖 Guias de Setup
+- [ENV_SETUP.md](./ENV_SETUP.md) - Configuração de variáveis de ambiente
+- [DATABASE_SETUP.md](./DATABASE_SETUP.md) - Setup do banco de dados Supabase
+- [QUICKSTART.md](./QUICKSTART.md) - Guia rápido para começar
+
+### 🔧 Documentação Técnica
+- [DATABASE_SCHEMA.md](./DATABASE_SCHEMA.md) - Schema do banco e diagramas
+- [AUTHENTICATION_IMPLEMENTATION.md](./AUTHENTICATION_IMPLEMENTATION.md) - Sistema de autenticação
+- [POST_DETAILS_IMPLEMENTATION.md](./POST_DETAILS_IMPLEMENTATION.md) - Página de detalhes e comentários
+- [USER_PROFILE_IMPLEMENTATION.md](./USER_PROFILE_IMPLEMENTATION.md) - Sistema de perfis
+- [FOLLOW_SYSTEM_IMPLEMENTATION.md](./FOLLOW_SYSTEM_IMPLEMENTATION.md) - Sistema de follow/unfollow
+- [FEED_SYSTEM_IMPLEMENTATION.md](./FEED_SYSTEM_IMPLEMENTATION.md) - Feed personalizado
+- [EDIT_PROFILE_IMPLEMENTATION.md](./EDIT_PROFILE_IMPLEMENTATION.md) - Edição de perfil
+
+### 📋 Planejamento
 - [NEXT_STEPS.md](./NEXT_STEPS.md) - Próximas implementações
-- [QUICKSTART.md](./QUICKSTART.md) - Guia rápido de uso
 - [DEVELOPMENT.md](./DEVELOPMENT.md) - Guia de desenvolvimento
 - [DESIGN.md](./DESIGN.md) - Especificações de design
 
@@ -197,12 +261,23 @@ MIT License - veja [LICENSE](LICENSE) para mais detalhes
 - [Supabase](https://supabase.com)
 - [Unsplash](https://unsplash.com) - Imagens de exemplo
 
+## 🎓 Aprendizados do Projeto
+
+Este projeto foi desenvolvido como estudo prático de:
+- Next.js 16 com App Router e Server Components
+- Sistema de autenticação moderno com NextAuth.js v5
+- Integração completa com Prisma e PostgreSQL
+- Otimistic UI updates para melhor UX
+- Validações robustas com Zod
+- Design system com shadcn/ui e Tailwind CSS v4
+- Deployment e CI/CD com Vercel
+
 ## 📧 Contato
 
-Marcos Vieira - [@Marcosvf23](https://github.com/Marcosvf23)
+**Marcos Fernandes** - [@Marcosvf23](https://github.com/Marcosvf23)
 
 Link do Projeto: [https://github.com/Marcosvf23/PromptShare](https://github.com/Marcosvf23/PromptShare)
 
 ---
 
-⭐ Se este projeto te ajudou, considere dar uma estrela!
+⭐ Se este projeto te ajudou ou inspirou, considere dar uma estrela!
