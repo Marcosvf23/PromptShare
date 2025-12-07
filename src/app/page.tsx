@@ -66,25 +66,6 @@ export default function Home() {
     );
   }, [prompts, searchQuery]);
 
-  const handleNewPrompt = (data: {
-    title: string;
-    prompt: string;
-    imageUrl: string;
-    tags: string[];
-  }) => {
-    const newPrompt: Prompt = {
-      id: Date.now().toString(),
-      ...data,
-      author: {
-        name: "Você",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=user",
-      },
-      likes: 0,
-      createdAt: new Date(),
-    };
-    setPrompts([newPrompt, ...prompts]);
-  };
-
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -98,7 +79,7 @@ export default function Home() {
             <div className="flex-1 flex justify-center max-w-2xl">
               <SearchBar onSearch={setSearchQuery} />
             </div>
-            <UploadDialog onSubmit={handleNewPrompt} />
+            <UploadDialog />
           </div>
         </div>
       </header>
