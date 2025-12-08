@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CommentSection } from "@/components/CommentSection";
 import { Heart, Copy, Download, ArrowLeft, Calendar } from "lucide-react";
+import prisma from "@/lib/prisma";
 
 interface Post {
   id: string;
@@ -41,15 +42,87 @@ interface Post {
 
 async function getPost(id: string): Promise<Post | null> {
   try {
-    const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
-      cache: "no-store",
+    const post = await prisma.post.findUnique({
+      where: { id },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            name: true,
+            avatarUrl: true,
+          },
+        },
+        tags: {
+          include: {
+            tag: {
+              select: {
+                id: true,
+                name: true,
+                slug: true,
+              },
+            },
+          },
+        },
+        comments: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                username: true,
+                name: true,
+                avatarUrl: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
+        _count: {
+          select: {
+            likes: true,
+            comments: true,
+          },
+        },
+      },
     });
 
-    if (!response.ok) {
+    if (!post) {
       return null;
     }
 
-    return response.json();
+    return {
+      id: post.id,
+      title: post.title,
+      prompt: post.prompt,
+      imageUrl: post.imageUrl,
+      model: post.model,
+      author: {
+        id: post.user.id,
+        username: post.user.username,
+        name: post.user.name,
+        avatarUrl: post.user.avatarUrl,
+      },
+      tags: post.tags.map((pt) => ({
+        id: pt.tag.id,
+        name: pt.tag.name,
+        slug: pt.tag.slug,
+      })),
+      likes: post._count.likes,
+      comments: post.comments.map((comment) => ({
+        id: comment.id,
+        content: comment.content,
+        createdAt: comment.createdAt.toISOString(),
+        author: {
+          id: comment.user.id,
+          username: comment.user.username,
+          name: comment.user.name,
+          avatarUrl: comment.user.avatarUrl,
+        },
+      })),
+      createdAt: post.createdAt.toISOString(),
+    };
   } catch (error) {
     console.error("Error fetching post:", error);
     return null;
@@ -59,10 +132,9 @@ async function getPost(id: string): Promise<Post | null> {
 export default async function PostPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const { id } = await params;
-  const post = await getPost(id);
+  const post = await getPost(params.id);
 
   if (!post) {
     notFound();
